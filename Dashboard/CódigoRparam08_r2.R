@@ -17,8 +17,6 @@
 ##### Gráficos para ver DISTRIBUCIÓN DE LOS DATOS de las variables
 ##### Correlaciones entre las variables numéricas
 ##### Análisis descriptivo y pruebas de normalidad
-##### AFC para AGRUPACIÓN de variables en los 3 tipos de motivación teorizados en la literatura pertinente
-##### Inclusión en la BD las 3 NUEVAS VARIABLES motprosoc, motextr y motintr; análisis de asimetría y outliers
 ######### Gráficos y diferencias por sexo / motivaciones
 ####### Gráficos y diferencias por sexo / happy, inpfree, ipeqopt y ipfrule 
 ##### Eisced / MOTIVACIONES

@@ -55,43 +55,79 @@ ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
 
 Column {data-width=450}
 -------------------------------------------------
-### Chart B
 
-### Gráfico de prueba
+### Gráfico de diferencias en motivaciones por edad
 
 ```{r}
-data(mtcars)
-ggplot(mtcars, aes(x = factor(cyl), fill = factor(gear))) +
-  geom_bar(position = "dodge") +
-  labs(title = "Distribución de Cilindros por Tipo de Cambio",
-       x = "Número de Cilindros",
-       y = "Cuenta",
-       fill = "Tipo de Cambio") +
+# Crear categorías de edad y convertir a factor
+df_filtered <- df_filtered %>%
+  mutate(age_category = cut(agea, 
+                            breaks = c(15, 20, 30, 40, 50, 60, 70, 80, Inf), 
+                            labels = c("15-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81+"),
+                            right = FALSE),
+         age_category = factor(age_category, levels = c("15-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81+")))
+
+# Crear una base de datos larga para ggplot para motivaciones según `age_category`
+df_long_age_motivation <- df_filtered %>%
+  select(age_category, motprosoc, motextr, motintr) %>%
+  pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value")
+
+# Calcular medias por categoría de edad y motivación
+df_long_age_motivation_summary <- df_long_age_motivation %>%
+  group_by(age_category, motivation) %>%
+  summarise(mean_value = mean(value, na.rm = TRUE)) %>%
+  ungroup()
+
+# Crear el gráfico con tres barras de motivaciones para cada segmento de edad
+ggplot(df_long_age_motivation_summary, aes(x = motivation, y = mean_value, fill = age_category)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Comparación de la Media de Motivaciones por Categoría de Edad",
+       x = "Motivación",
+       y = "Media de Motivación",
+       fill = "Categoría de Edad") +
+  scale_fill_brewer(palette = "Spectral") +  # Usar una paleta de colores secuencial
   theme_minimal()
+
+
 
 ```
 
-### Gráfico de prueba 2
+### Gráfico de diferencias en motivaciones por nivel educativo
 ```{r}
-# Crear una base de datos larga para ggplot
-df_long_all_countries <- df_filtered %>%
-  select(cntry, gndr, motprosoc, motextr, motintr) %>%
+# Filtrar la base de datos para excluir los valores 0 y 55 en eisced y agrupar categorías
+df_filtered_eisced <- df_filtered %>%
+  mutate(eisced_grouped = case_when(
+    eisced %in% 1:4 ~ "ISCED 1-4",
+    eisced == 5 ~ "ISCED 5",
+    eisced == 6 ~ "ISCED 6",
+    eisced == 7 ~ "ISCED 7"
+  )) %>%
+  mutate(eisced_grouped = factor(eisced_grouped, levels = c("ISCED 1-4", "ISCED 5", "ISCED 6", "ISCED 7")))
+
+# Crear una base de datos larga para ggplot para motivaciones según `eisced_grouped`
+df_long_eisced_motivation <- df_filtered_eisced %>%
+  select(eisced_grouped, motprosoc, motextr, motintr) %>%
   pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value")
 
-# Crear una columna para separar las barras hacia la izquierda o la derecha
-df_long_all_countries <- df_long_all_countries %>%
-  mutate(value = ifelse(gndr == "Hombre", -value, value))
+# Calcular medias por categoría de nivel educativo y motivación
+df_long_eisced_motivation_summary <- df_long_eisced_motivation %>%
+  group_by(eisced_grouped, motivation) %>%
+  summarise(mean_value = mean(value, na.rm = TRUE)) %>%
+  ungroup()
 
-# Crear el gráfico de mariposa
-ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
-  geom_bar(stat = "identity", position = "stack") +
-  labs(title = "Comparación de Motivaciones por Sexo en Todos los Países",
+# Definir una paleta de colores secuenciales manualmente con mayor contraste
+color_palette <- c("ISCED 1-4" = "#bdd7e7", "ISCED 5" = "#6baed6", "ISCED 6" = "#3182bd", "ISCED 7" = "#08519c")
+
+# Crear el gráfico con tres barras de motivaciones para cada nivel educativo
+ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fill = eisced_grouped)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Comparación de la Media de Motivaciones por Nivel Educativo",
        x = "Motivación",
-       y = "Valor de Motivación",
-       fill = "Sexo") +
-  theme_minimal() +
-  scale_y_continuous(labels = abs) +  # Mostrar valores absolutos en el eje y
-  coord_flip()  # Girar el gráfico para que las barras sean horizontales
+       y = "Media de Motivación",
+       fill = "Nivel Educativo") +
+  scale_fill_manual(values = color_palette) +  # Usar una paleta de colores secuencial definida manualmente
+  theme_minimal()
+
 
 
 ```
