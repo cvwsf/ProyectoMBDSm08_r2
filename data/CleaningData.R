@@ -28,9 +28,10 @@ print(variable_types)
 # 2. Eliminación de sujetos con al menos un valor faltante.
 # 3. Detección de outliers.
 # 4. Inversión de la variable 'happy'
-# 5. Variable eisced: exclusión de sus valores 0 y 55, agrupación de categorías y conversión en factor
+# 5. Variable eisced: exclusión de sus valores 0 y 55, agrupación de categorías y conversión en factor.
 # 6. Descarte de las variables no consideradas relevantes para la tare y reordenación de columnas.
-
+# 7. AFC para AGRUPACIÓN de variables en los 3 tipos de motivación teorizados en la literatura pertinente e inclusión en la BD.
+# 8. Creación del archivo depurado.
 
 
 ##### 1. Conversión de las variables gndr, bthcld y atncrse a categórica/factor (están como numéricas)
@@ -332,8 +333,62 @@ summary_df
 # Renombrar df_filtered_reordered a df_filtered
 df_filtered <- df_filtered_reordered
 
+
+##### 7. AFC para AGRUPACIÓN de variables en los 3 tipos de motivación teorizados en la literatura pertinente e inclusión en la BD
+
+
+library(dplyr)
+library(psych)
+library(FactoMineR)
+library(factoextra)
+library(lavaan)
+
+
+# Seleccionar las variables de interés para el AFC
+variables_afc <- df_filtered %>%
+  select(impenv, imprich, ipadvnt, ipcrtiv, ipgdtim, iphlppl, iplylfr, ipshabt, ipsuces)
+
+# Normalizar las variables (opcional, dependiendo de la escala de las variables)
+variables_afc_scaled <- scale(variables_afc)
+
+# Definir el modelo de tres factores
+model <- '
+  # Definir los factores
+  Factor1 =~ impenv + iphlppl + iplylfr
+  Factor2 =~ imprich + ipsuces + ipshabt
+  Factor3 =~ ipadvnt + ipcrtiv + ipgdtim
+'
+
+# Ajustar el modelo utilizando lavaan
+fit <- cfa(model, data = as.data.frame(variables_afc_scaled))
+
+# Resumen del ajuste del modelo
+summary(fit, fit.measures = TRUE, standardized = TRUE)
+
+# Índices de ajuste
+fitmeasures(fit, c("cfi", "tli", "rmsea", "srmr"))
+
+## AÑADIR A LA BD las 3 NUEVAS VARIABLES motprosoc, motextr y motintr
+# Calcular la media de las variables para cada factor y añadirlas como nuevas variables
+
+# motprosoc: media de impenv, iphlppl, iplylfr
+df_filtered$motprosoc <- rowMeans(df_filtered[, c("impenv", "iphlppl", "iplylfr")])
+
+# motextr: media de imprich, ipsuces, ipshabt
+df_filtered$motextr <- rowMeans(df_filtered[, c("imprich", "ipsuces", "ipshabt")])
+
+# motintr: media de ipadvnt, ipcrtiv, ipgdtim
+df_filtered$motintr <- rowMeans(df_filtered[, c("ipadvnt", "ipcrtiv", "ipgdtim")])
+
+# Verificar las nuevas variables
+head(df_filtered[, c("motprosoc", "motextr", "motintr")])
+
+
 # Guardar el DataFrame depurado en un nuevo archivo CSV
 write_csv(df_filtered, "df_filtered.csv")
+
+
+
 
 ##### Como procesos de depuración de la BD, hemos llevado a cano las siguientes acciones:
 
@@ -343,5 +398,6 @@ write_csv(df_filtered, "df_filtered.csv")
 # 4. Inversión de la variable 'happy'
 # 5. Variable eisced: exclusión de sus valores 0 y 55, agrupación de categorías y conversión en factor
 # 6. Descarte de las variables no consideradas relevantes para la tarea y reordenación de columnas.
-
+# 7. AFC para AGRUPACIÓN de variables en los 3 tipos de motivación teorizados en la literatura pertinente e inclusión en la BD
+# 8. Creación del archivo depurado
 
