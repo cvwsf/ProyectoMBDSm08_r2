@@ -34,6 +34,12 @@
 # Cargar los paquetes necesarios
 library(ggplot2)
 
+
+# Cargar base de datos
+
+df_filtered <- read.csv("df_filtered.csv")
+
+
 # Variables categóricas y numéricas específicas
 categorical_vars <- c("gndr", "atncrse", "bthcld", "eisced_grouped")
 numerical_vars <- c("agea", "happy", "eisced", 
