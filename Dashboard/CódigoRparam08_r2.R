@@ -170,55 +170,7 @@ results <- do.call(rbind, lapply(numerical_vars, function(var) analyze_distribut
 # Mostrar resultados
 print(results)
 
-# Cargar paquetes necesarios
-library(dplyr)
-library(psych)
-library(FactoMineR)
-library(factoextra)
-library(lavaan)
 
-
-##### AFC para AGRUPACIÓN de variables en los 3 tipos de motivación teorizados en la literatura pertinente
-
-# Seleccionar las variables de interés para el AFC
-variables_afc <- df_filtered %>%
-  select(impenv, imprich, ipadvnt, ipcrtiv, ipgdtim, iphlppl, iplylfr, ipshabt, ipsuces)
-
-# Normalizar las variables (opcional, dependiendo de la escala de las variables)
-variables_afc_scaled <- scale(variables_afc)
-
-# Definir el modelo de tres factores
-model <- '
-  # Definir los factores
-  Factor1 =~ impenv + iphlppl + iplylfr
-  Factor2 =~ imprich + ipsuces + ipshabt
-  Factor3 =~ ipadvnt + ipcrtiv + ipgdtim
-'
-
-# Ajustar el modelo utilizando lavaan
-fit <- cfa(model, data = as.data.frame(variables_afc_scaled))
-
-# Resumen del ajuste del modelo
-summary(fit, fit.measures = TRUE, standardized = TRUE)
-
-# Índices de ajuste
-fitmeasures(fit, c("cfi", "tli", "rmsea", "srmr"))
-
-
-###### AÑADIR A LA BD las 3 NUEVAS VARIABLES motprosoc, motextr y motintr
-# Calcular la media de las variables para cada factor y añadirlas como nuevas variables
-
-# motprosoc: media de impenv, iphlppl, iplylfr
-df_filtered$motprosoc <- rowMeans(df_filtered[, c("impenv", "iphlppl", "iplylfr")])
-
-# motextr: media de imprich, ipsuces, ipshabt
-df_filtered$motextr <- rowMeans(df_filtered[, c("imprich", "ipsuces", "ipshabt")])
-
-# motintr: media de ipadvnt, ipcrtiv, ipgdtim
-df_filtered$motintr <- rowMeans(df_filtered[, c("ipadvnt", "ipcrtiv", "ipgdtim")])
-
-# Verificar las nuevas variables
-head(df_filtered[, c("motprosoc", "motextr", "motintr")])
 
 
 ##### Cálculo de outliers y asimetría para las 3 variables de motivación
