@@ -14,52 +14,86 @@ library(flexdashboard)
 library(tidyverse)
 library(maps)
 library(DT)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 # Cargar base de datos
-Column {data-width=650}
--------------------------------------------------
-### Chart A
+
 ```{r}
 df_filtered <- read.csv("df_filtered.csv")
 ```
 
+Column {data-width=550}
+-------------------------------------------------
+### Gráfico de diferencias en motivaciones por sexo
 
 ```{r}
+##### Gráfico de diferencias en motivaciones por sexo
+# Crear una base de datos larga para ggplot
+df_long_all_countries <- df_filtered %>%
+  select(cntry, gndr, motprosoc, motextr, motintr) %>%
+  pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value")
+
+# Crear una columna para separar las barras hacia la izquierda o la derecha
+df_long_all_countries <- df_long_all_countries %>%
+  mutate(value = ifelse(gndr == "Hombre", -value, value))
+
+# Crear el gráfico de mariposa
+ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Comparación de Motivaciones por Sexo en Todos los Países",
+       x = "Motivación",
+       y = "Valor de Motivación",
+       fill = "Sexo") +
+  theme_minimal() +
+  scale_y_continuous(labels = abs) +  # Mostrar valores absolutos en el eje y
+  coord_flip()  # Girar el gráfico para que las barras sean horizontales
+
+
 
 ```
 
-Column {data-width=350}
+Column {data-width=450}
 -------------------------------------------------
 ### Chart B
 
-### Chart C
+### Gráfico de prueba
 
 ```{r}
+data(mtcars)
+ggplot(mtcars, aes(x = factor(cyl), fill = factor(gear))) +
+  geom_bar(position = "dodge") +
+  labs(title = "Distribución de Cilindros por Tipo de Cambio",
+       x = "Número de Cilindros",
+       y = "Cuenta",
+       fill = "Tipo de Cambio") +
+  theme_minimal()
 
 ```
 
+### Gráfico de prueba 2
+```{r}
+# Crear una base de datos larga para ggplot
+df_long_all_countries <- df_filtered %>%
+  select(cntry, gndr, motprosoc, motextr, motintr) %>%
+  pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value")
+
+# Crear una columna para separar las barras hacia la izquierda o la derecha
+df_long_all_countries <- df_long_all_countries %>%
+  mutate(value = ifelse(gndr == "Hombre", -value, value))
+
+# Crear el gráfico de mariposa
+ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Comparación de Motivaciones por Sexo en Todos los Países",
+       x = "Motivación",
+       y = "Valor de Motivación",
+       fill = "Sexo") +
+  theme_minimal() +
+  scale_y_continuous(labels = abs) +  # Mostrar valores absolutos en el eje y
+  coord_flip()  # Girar el gráfico para que las barras sean horizontales
+
+
+```
 
 ---
-
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
