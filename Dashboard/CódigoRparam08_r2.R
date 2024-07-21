@@ -261,7 +261,7 @@ ggplot(subset(df_long_sex, gndr == "Mujer"), aes(x = motivation, y = mean_value,
 
 ############ Gráficos de SEXO / MOTIVACIONES
 ####### SEXOS JUNTOS
-### t-student Sexo / Motivación
+### t-student Sexo / Motivación ###############################################################################
 # Realizar pruebas t para cada motivación
 t_test_results <- df_filtered %>%
   select(gndr, motprosoc, motextr, motintr) %>%
@@ -276,7 +276,7 @@ t_test_results <- df_filtered %>%
   select(-t_test)
 
 # Mostrar resultados
-print(t_test_results)
+print(t_test_results) ###############################################################################
 
 # Cargar librerías necesarias
 library(ggplot2)
@@ -355,7 +355,7 @@ library(ggplot2)
 # Variables de interés
 motivation_vars <- c("motprosoc", "motextr", "motintr")
 
-# Realizar ANOVAs para cada motivación según `eisced_grouped`
+# Realizar ANOVAs para cada motivación según `eisced_grouped`###############################################################################
 anova_results_motivation <- lapply(motivation_vars, function(var) {
   anova_result <- aov(as.formula(paste(var, "~ eisced_grouped")), data = df_filtered)
   summary(anova_result)
@@ -389,7 +389,7 @@ df_filtered <- df_filtered %>%
 # Verificar la creación de categorías de edad
 table(df_filtered$age_category)
 
-# Realizar ANOVAs para motivaciones según `age_category`
+# Realizar ANOVAs para motivaciones según `age_category` ###############################################################################
 anova_results_motivation_age <- lapply(motivation_vars, function(var) {
   aov_result <- aov(df_filtered[[var]] ~ df_filtered$age_category)
   summary(aov_result)
@@ -847,7 +847,7 @@ ggplot(country_motprosoc, aes(x = fct_reorder(cntry, mean_motprosoc), y = mean_m
        y = "Media de Motprosoc") +
   theme_minimal()
 
-######## ANOVAs que nos permitan explorar si hay diferencias
+######## ANOVAs que nos permitan explorar si hay diferencias ###############################################################################
 ######## estadísticamente significativas entre países para cada una de las motivaciones.
 ######## Primero, todos los países; luego, sin Italia.
 # Cargar librerías necesarias
