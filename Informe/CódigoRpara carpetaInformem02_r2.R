@@ -1,25 +1,11 @@
-####### Cosas iniciales
+######## Cosas inicio
 
 
 
 
-####### Código parcial m08_r1 para este archivo
-###### EXPLORACIÓN
-###### A continuación, llevamos a cabo las siguientes exploraciones:
 
-##### Gráficos para ver DISTRIBUCIÓN DE LOS DATOS de las variables
-##### Correlaciones entre las variables numéricas
-##### Análisis descriptivo y pruebas de normalidad
-##### Análisis de asimetría y outliers de las 3  variables de motivación (motprosoc, motextr y motintr)
-######### Gráficos y diferencias por sexo / motivaciones
-####### Gráficos y diferencias por sexo / happy, inpfree, ipeqopt y ipfrule 
-##### Eisced / MOTIVACIONES
-##### Agea / MOTIVACIONES
-####### Clasificación por PAÍSES para cada una de las variables de motivación
-######### Gráfico de Europa occidental con los resultados por cada tipo de motivación
-######### Gráfico de Europa occidental con el tipo de motivación más alto por país
-####### Gráfico de Europa occidental y diferencias por países por cada motivación y por happy, impfree, ipeqopt e ipfrule
-######### Gráfico de mariposa por sexo (ejemplo)
+
+
 
 
 
@@ -28,25 +14,29 @@
 ###### EXPLORACIÓN
 ###### A continuación, llevamos a cabo las siguientes exploraciones:
 
-##### Gráficos para ver DISTRIBUCIÓN DE LOS DATOS de las variables
-##### Correlaciones entre las variables numéricas
-##### Análisis descriptivo y pruebas de normalidad
-##### AFC para AGRUPACIÓN de variables en los 3 tipos de motivación teorizados en la literatura pertinente
-##### Inclusión en la BD las 3 NUEVAS VARIABLES motprosoc, motextr y motintr; análisis de asimetría y outliers
+#### Gráficos para ver DISTRIBUCIÓN DE LOS DATOS de las variables
+#### Correlaciones entre las variables numéricas
+#### Análisis descriptivo y pruebas de normalidad
 ######### Gráficos y diferencias por sexo / motivaciones
-####### Gráficos y diferencias por sexo / happy, inpfree, ipeqopt y ipfrule 
-##### Eisced / MOTIVACIONES
-##### Agea / MOTIVACIONES
-####### Clasificación por PAÍSES para cada una de las variables de motivación
+##### Gráficos y diferencias por sexo / happy, inpfree, ipeqopt y ipfrule 
+######### Eisced / MOTIVACIONES
+######### Agea / MOTIVACIONES
+###### Clasificación por PAÍSES para cada una de las variables de motivación
 ######### Gráfico de Europa occidental con los resultados por cada tipo de motivación
 ######### Gráfico de Europa occidental con el tipo de motivación más alto por país
-####### Gráfico de Europa occidental y diferencias por países por cada motivación y por happy, impfree, ipeqopt e ipfrule
+###### Gráfico de Europa occidental y diferencias por países por cada motivación y por happy, impfree, ipeqopt e ipfrule
 ######### Gráfico de mariposa por sexo (ejemplo)
 
 
 
 # Cargar los paquetes necesarios
 library(ggplot2)
+
+
+# Cargar base de datos
+
+df_filtered <- read.csv("df_filtered.csv")
+
 
 # Variables categóricas y numéricas específicas
 categorical_vars <- c("gndr", "atncrse", "bthcld", "eisced_grouped")
@@ -271,7 +261,7 @@ ggplot(subset(df_long_sex, gndr == "Mujer"), aes(x = motivation, y = mean_value,
 
 ############ Gráficos de SEXO / MOTIVACIONES
 ####### SEXOS JUNTOS
-### t-student Sexo / Motivación
+### t-student Sexo / Motivación ###############################################################################
 # Realizar pruebas t para cada motivación
 t_test_results <- df_filtered %>%
   select(gndr, motprosoc, motextr, motintr) %>%
@@ -286,7 +276,7 @@ t_test_results <- df_filtered %>%
   select(-t_test)
 
 # Mostrar resultados
-print(t_test_results)
+print(t_test_results) ###############################################################################
 
 # Cargar librerías necesarias
 library(ggplot2)
@@ -365,7 +355,7 @@ library(ggplot2)
 # Variables de interés
 motivation_vars <- c("motprosoc", "motextr", "motintr")
 
-# Realizar ANOVAs para cada motivación según `eisced_grouped`
+# Realizar ANOVAs para cada motivación según `eisced_grouped`###############################################################################
 anova_results_motivation <- lapply(motivation_vars, function(var) {
   anova_result <- aov(as.formula(paste(var, "~ eisced_grouped")), data = df_filtered)
   summary(anova_result)
@@ -399,7 +389,7 @@ df_filtered <- df_filtered %>%
 # Verificar la creación de categorías de edad
 table(df_filtered$age_category)
 
-# Realizar ANOVAs para motivaciones según `age_category`
+# Realizar ANOVAs para motivaciones según `age_category` ###############################################################################
 anova_results_motivation_age <- lapply(motivation_vars, function(var) {
   aov_result <- aov(df_filtered[[var]] ~ df_filtered$age_category)
   summary(aov_result)
@@ -646,7 +636,7 @@ print(country_motprosoc)
 print(country_motextr)
 print(country_motintr)
 
-##### Gráfico del mapa de Europa occidental con los resultados por MOTIVACIÓN
+##### Gráfico del mapa de Europa occidental con los resultados por cada TIPO de MOTIVACIÓN
 ##### mismo color, pero diferente saturación
 # Instalar y cargar las librerías necesarias
 if (!requireNamespace("ggplot2")) install.packages("ggplot2")
@@ -857,7 +847,7 @@ ggplot(country_motprosoc, aes(x = fct_reorder(cntry, mean_motprosoc), y = mean_m
        y = "Media de Motprosoc") +
   theme_minimal()
 
-######## ANOVAs que nos permitan explorar si hay diferencias
+######## ANOVAs que nos permitan explorar si hay diferencias ###############################################################################
 ######## estadísticamente significativas entre países para cada una de las motivaciones.
 ######## Primero, todos los países; luego, sin Italia.
 # Cargar librerías necesarias

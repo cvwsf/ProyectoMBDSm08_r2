@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{multicol}
+
+
+
+
+
+\usepackage{Sweave}
+\begin{document}
+\input{Ejemplo-concordance}
+
+\title{Ejemplo de Documento Sweave}
+\author{Tu Nombre}
+\date{\today}
+
+\maketitle
+
+\begin{multicols}{2}
+Este es un ejemplo de documento Sweave que incluye múltiples columnas.
+
+\begin{Schunk}
+\begin{Sinput}
+> # Código R de ejemplo
+> x <- rnorm(100)
+> summary(x)
+\end{Sinput}
+\begin{Soutput}
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-2.67616 -0.69232 -0.04304  0.01606  0.68992  3.03019 
+\end{Soutput}
+\end{Schunk}
+
+Gráfico de ejemplo generado por R:
+
+\includegraphics{plot_example.pdf}
+
+\end{multicols}
+
+\end{document}
+
+
+\begin{Schunk}
+\begin{Sinput}
+> if(!require(tinytex)){
++   install.packages('tinytex')
++   library(tinytex)
++   tinytex::install_tinytex()
++ }
+> # Lista de paquetes comunes necesarios para compilar documentos LaTeX
+> paquetes_necesarios <- c(
++   "amscls", "amsfonts", "amsmath", "atbegshi", "atveryend", "auxhook",
++   "babel", "bibtex", "bigintcalc", "bitset", "bookmark", "booktabs", "cm",
++   "ctablestack", "dehyph", "dvipdfmx", "dvips", "ec", "epstopdf", "epstopdf-pkg",
++   "etex", "etexcmds", "etoolbox", "euenc", "everyshi", "fancyvrb", "filehook",
++   "firstaid", "float", "fontspec", "framed", "geometry", "gettitlestring", "glyphlist",
++   "graphics", "graphics-cfg", "graphics-def", "grfext", "grffile", "helvetic", "hycolor",
++   "hyperref", "hyph-utf8", "hyphen-base", "iftex", "inconsolata", "infwarerr", "intcalc",
++   "knuth-lib", "kpathsea", "kvdefinekeys", "kvoptions", "kvsetkeys", "l3backend", "l3kernel",
++   "l3packages", "latex", "latex-amsmath-dev", "latex-bin", "latex-fonts", "latex-tools-dev",
++   "latexconfig", "latexmk", "letltxmacro", "lm", "lm-math", "ltxcmds", "lua-alt-getopt",
++   "lua-uni-algos", "luahbtex", "lualatex-math", "lualibs", "luaotfload", "luatex", "luatexbase",
++   "mdwtools", "metafont", "mfware", "modes", "natbib", "oberdiek", "pdfescape", "pdftex",
++   "pdftexcmds", "plain", "psnfss", "refcount", "rerunfilecheck", "scheme-infraonly", "selnolig",
++   "stringenc", "symbol", "tex", "tex-ini-files", "texlive-scripts", "texlive-scripts-extra",
++   "texlive.infra", "times", "tipa", "tlgpg", "tlgs", "tlperl", "tools", "unicode-data",
++   "unicode-math", "uniquecounter", "url", "xcolor", "xetex", "xetexconfig", "xkeyval", "xunicode",
++   "zapfding"
++ )
+> # Instalar los paquetes
+> tinytex::tlmgr_install(paquetes_necesarios)
+\end{Sinput}
+\end{Schunk}
+
