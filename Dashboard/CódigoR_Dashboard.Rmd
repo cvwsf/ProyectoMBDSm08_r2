@@ -16,7 +16,9 @@ library(tidyverse)
 library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
+library(shiny)
 knitr::opts_chunk$set(echo = FALSE)
+
 ```
 
 # Cargar base de datos
@@ -143,8 +145,33 @@ ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fi
 Gráficos 2 {data-icon="fa-table"}
 =================================================
 
+Column {data-width=25%}
+------------------------------------------------------------------------
+### Gráfico de Europa occidental con principal motivación por país
+
 
 ```{r}
+# Gráfico de Europa occidental con principal motivación por país
+###### Clasificación por PAÍSES para cada una de las variables de motivación
+
+# Ordenar por motprosoc
+country_motprosoc <- df_filtered %>%
+  group_by(cntry) %>%
+  summarise(mean_motprosoc = mean(motprosoc, na.rm = TRUE)) %>%
+  arrange(desc(mean_motprosoc))
+
+# Ordenar por motextr
+country_motextr <- df_filtered %>%
+  group_by(cntry) %>%
+  summarise(mean_motextr = mean(motextr, na.rm = TRUE)) %>%
+  arrange(desc(mean_motextr))
+
+# Ordenar por motintr
+country_motintr <- df_filtered %>%
+  group_by(cntry) %>%
+  summarise(mean_motintr = mean(motintr, na.rm = TRUE)) %>%
+  arrange(desc(mean_motintr))
+
 # Calcular cuál es la motivación más alta para cada país
 country_motivation <- df_filtered %>%
   group_by(cntry) %>%
@@ -195,27 +222,481 @@ ggplot() +
   scale_fill_manual(values = c("Motprosoc" = "green", "Motextr" = "red", "Motintr" = "blue"), na.value = "grey", name = "Motivación más alta") +
   theme_minimal() +
   coord_sf(xlim = c(-10, 30), ylim = c(35, 70)) + 
-  labs(title = "Tipo de Motivación más Alto en Europa Occidental")
+  labs(title = "Principal tipo de motivación por países en Europa Occidental")
 
 
 ```
 
 
-Column {.sidebar data-heigth=400}
--------------------------------------------------
+Column {data-width=25%}
+------------------------------------------------------------------------
+### Gráfico de Europa occidental por nivel relativo de motivación extrínseca
 
 
+```{r}
+##### Gráfico del mapa de Europa occidental con los resultados por cada TIPO de MOTIVACIÓN
+##### mismo color, pero diferente saturación
+# Instalar y cargar las librerías necesarias
+# Instalar y cargar las librerías necesarias
+if (!requireNamespace("ggplot2")) install.packages("ggplot2")
+if (!requireNamespace("dplyr")) install.packages("dplyr")
+if (!requireNamespace("sf")) install.packages("sf")
+if (!requireNamespace("rnaturalearth")) install.packages("rnaturalearth")
+if (!requireNamespace("rnaturalearthdata")) install.packages("rnaturalearthdata")
+
+# Cargar los paquetes necesarios
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+
+# Cargar el shapefile de los países de Europa
+europe_map <- ne_countries(scale = "medium", continent = "Europe", returnclass = "sf")
+
+# Asegurar que los nombres de los países coinciden con los datos
+country_labels <- c("United Kingdom", "France", "Portugal", "Italy", "Spain", 
+                    "Germany", "Netherlands", "Belgium", "Ireland", "Austria", 
+                    "Switzerland", "Denmark", "Finland", "Sweden", "Norway")
+
+country_motextr <- country_motextr %>%
+  mutate(cntry = recode(cntry, GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                        ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                        IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                        FI = "Finland", SE = "Sweden", NO = "Norway"))
+
+# Filtrar para los países de interés
+europe_map_filtered <- europe_map %>%
+  filter(name_long %in% country_labels)
+
+# Fusionar los datos de motivación con el mapa
+merged_data_motextr <- europe_map_filtered %>%
+  left_join(country_motextr, by = c("name_long" = "cntry"))
+
+# Crear el mapa para motextr con mayor contraste de saturación
+ggplot() +
+  geom_sf(data = europe_map_filtered, fill = "grey", color = "black") + 
+  geom_sf(data = merged_data_motextr, aes(fill = mean_motextr), color = "black") +
+  scale_fill_gradient(low = "#FFCCCC", high = "#CC0000", na.value = "grey", name = "Media") +
+  theme_minimal() +
+  coord_sf(xlim = c(-10, 30), ylim = c(35, 70)) + 
+  labs(title = "Nivel de Motextr en Europa Occidental")
 
 
+```
 
 
+Column {data-width=25%}
+------------------------------------------------------------------------
+### Gráfico de Europa occidental por nivel relativo de motivación intrínseca
 
-Acerca del estudio {data-icon="fa-table"}
+
+```{r}
+##### Gráfico del mapa de Europa occidental con los resultados por cada TIPO de MOTIVACIÓN
+##### mismo color, pero diferente saturación
+# Instalar y cargar las librerías necesarias
+if (!requireNamespace("ggplot2")) install.packages("ggplot2")
+if (!requireNamespace("dplyr")) install.packages("dplyr")
+if (!requireNamespace("sf")) install.packages("sf")
+if (!requireNamespace("rnaturalearth")) install.packages("rnaturalearth")
+if (!requireNamespace("rnaturalearthdata")) install.packages("rnaturalearthdata")
+
+# Cargar los paquetes necesarios
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+
+# Cargar el shapefile de los países de Europa
+europe_map <- ne_countries(scale = "medium", continent = "Europe", returnclass = "sf")
+
+# Asegurar que los nombres de los países coinciden con los datos
+country_labels <- c("United Kingdom", "France", "Portugal", "Italy", "Spain", 
+                    "Germany", "Netherlands", "Belgium", "Ireland", "Austria", 
+                    "Switzerland", "Denmark", "Finland", "Sweden", "Norway")
+
+country_motintr <- country_motintr %>%
+  mutate(cntry = recode(cntry, GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                        ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                        IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                        FI = "Finland", SE = "Sweden", NO = "Norway"))
+
+# Filtrar para los países de interés
+europe_map_filtered <- europe_map %>%
+  filter(name_long %in% country_labels)
+
+# Fusionar los datos de motivación con el mapa
+merged_data_motintr <- europe_map_filtered %>%
+  left_join(country_motintr, by = c("name_long" = "cntry"))
+
+# Crear el mapa para motintr con mayor contraste de saturación
+ggplot() +
+  geom_sf(data = europe_map_filtered, fill = "grey", color = "black") + 
+  geom_sf(data = merged_data_motintr, aes(fill = mean_motintr), color = "black") +
+  scale_fill_gradient(low = "#CCCCFF", high = "#0000CC", na.value = "grey", name = "Media") +
+  theme_minimal() +
+  coord_sf(xlim = c(-10, 30), ylim = c(35, 70)) + 
+  labs(title = "Nivel de Motintr en Europa Occidental")
+
+
+```
+
+
+Column {data-width=25%}
+------------------------------------------------------------------------
+### Gráfico de Europa occidental por nivel relativo de motivación prosocial
+
+
+```{r}
+##### Gráfico del mapa de Europa occidental con los resultados por cada TIPO de MOTIVACIÓN
+##### mismo color, pero diferente saturación
+# Instalar y cargar las librerías necesarias
+if (!requireNamespace("ggplot2")) install.packages("ggplot2")
+if (!requireNamespace("dplyr")) install.packages("dplyr")
+if (!requireNamespace("sf")) install.packages("sf")
+if (!requireNamespace("rnaturalearth")) install.packages("rnaturalearth")
+if (!requireNamespace("rnaturalearthdata")) install.packages("rnaturalearthdata")
+
+# Cargar los paquetes necesarios
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+
+# Cargar el shapefile de los países de Europa
+europe_map <- ne_countries(scale = "medium", continent = "Europe", returnclass = "sf")
+
+# Asegurar que los nombres de los países coinciden con los datos
+country_labels <- c("United Kingdom", "France", "Portugal", "Italy", "Spain", 
+                    "Germany", "Netherlands", "Belgium", "Ireland", "Austria", 
+                    "Switzerland", "Denmark", "Finland", "Sweden", "Norway")
+
+country_motprosoc <- country_motprosoc %>%
+  mutate(cntry = recode(cntry, GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                        ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                        IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                        FI = "Finland", SE = "Sweden", NO = "Norway"))
+
+# Filtrar para los países de interés
+europe_map_filtered <- europe_map %>%
+  filter(name_long %in% country_labels)
+
+# Fusionar los datos de motivación con el mapa
+merged_data_motprosoc <- europe_map_filtered %>%
+  left_join(country_motprosoc, by = c("name_long" = "cntry"))
+
+# Crear el mapa para motprosoc con mayor contraste de saturación
+ggplot() +
+  geom_sf(data = europe_map_filtered, fill = "grey", color = "black") + 
+  geom_sf(data = merged_data_motprosoc, aes(fill = mean_motprosoc), color = "black") +
+  scale_fill_gradient(low = "#CCFFCC", high = "#006600", na.value = "grey", name = "Media") +
+  theme_minimal() +
+  coord_sf(xlim = c(-10, 30), ylim = c(35, 70)) + 
+  labs(title = "Nivel de Motprosoc en Europa Occidental")
+
+```
+
+Gráficos 3 {data-icon="fa-table"}
 =================================================
 
-Inputs {.sidebar data-heigth=400}
--------------------------------------------------
+Column {data-width=50%}
+------------------------------------------------------------------------
+### Gráfico de Europa occidental con principal motivación por país
 
-Bla bla bla
 
----
+```{r}
+# Gráfico de Europa occidental con principal motivación por país
+###### Clasificación por PAÍSES para cada una de las variables de motivación
+
+# Ordenar por motprosoc
+country_motprosoc <- df_filtered %>%
+  group_by(cntry) %>%
+  summarise(mean_motprosoc = mean(motprosoc, na.rm = TRUE)) %>%
+  arrange(desc(mean_motprosoc))
+
+# Ordenar por motextr
+country_motextr <- df_filtered %>%
+  group_by(cntry) %>%
+  summarise(mean_motextr = mean(motextr, na.rm = TRUE)) %>%
+  arrange(desc(mean_motextr))
+
+# Ordenar por motintr
+country_motintr <- df_filtered %>%
+  group_by(cntry) %>%
+  summarise(mean_motintr = mean(motintr, na.rm = TRUE)) %>%
+  arrange(desc(mean_motintr))
+
+# Calcular cuál es la motivación más alta para cada país
+country_motivation <- df_filtered %>%
+  group_by(cntry) %>%
+  summarise(
+    mean_motprosoc = mean(motprosoc, na.rm = TRUE),
+    mean_motextr = mean(motextr, na.rm = TRUE),
+    mean_motintr = mean(motintr, na.rm = TRUE)
+  ) %>%
+  rowwise() %>%
+  mutate(
+    highest_motivation = case_when(
+      mean_motprosoc >= mean_motextr & mean_motprosoc >= mean_motintr ~ "Motprosoc",
+      mean_motextr >= mean_motprosoc & mean_motextr >= mean_motintr ~ "Motextr",
+      mean_motintr >= mean_motprosoc & mean_motintr >= mean_motextr ~ "Motintr"
+    )
+  ) %>%
+  ungroup()
+
+# Ajustar los nombres de los países en country_motivation
+country_motivation <- country_motivation %>%
+  mutate(
+    cntry = recode(cntry, 
+                   GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                   ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                   IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                   FI = "Finland", SE = "Sweden", NO = "Norway")
+  )
+
+# Cargar el shapefile de los países de Europa
+europe_map <- ne_countries(scale = "medium", continent = "Europe", returnclass = "sf")
+
+# Filtrar para los países de interés
+selected_countries <- c("United Kingdom", "France", "Portugal", "Italy", "Spain", "Germany", 
+                        "Netherlands", "Belgium", "Ireland", "Austria", "Switzerland", 
+                        "Denmark", "Finland", "Sweden", "Norway")
+
+europe_map_filtered <- europe_map %>%
+  filter(name_long %in% selected_countries)
+
+# Fusionar los datos de motivación con el mapa
+merged_data_motivation <- europe_map_filtered %>%
+  left_join(country_motivation, by = c("name_long" = "cntry"))
+
+# Crear el mapa con colores para cada tipo de motivación
+ggplot() +
+  geom_sf(data = europe_map_filtered, fill = "grey", color = "black") + 
+  geom_sf(data = merged_data_motivation, aes(fill = highest_motivation), color = "black") +
+  scale_fill_manual(values = c("Motprosoc" = "green", "Motextr" = "red", "Motintr" = "blue"), na.value = "grey", name = "Motivación más alta") +
+  theme_minimal() +
+  coord_sf(xlim = c(-10, 30), ylim = c(35, 70)) + 
+  labs(title = "Principal tipo de motivación por países en Europa Occidental")
+
+
+```
+
+
+Column {data-width=50%}
+------------------------------------------------------------------------
+### Gráfico de Europa occidental por tipo de motivación seleccionada
+
+
+```{r}
+##### Gráfico del mapa de Europa occidental por tipo de motivación seleccionada
+
+# Selector de tipo de motivación
+selectInput("motivation_type", "Selecciona el tipo de motivación:",
+            choices = c("Motextr" = "motextr", "Motintr" = "motintr", "Motprosoc" = "motprosoc"),
+            selected = "motextr")
+# Gráfico reactivo de motivación
+renderPlot({
+  # Obtener el tipo de motivación seleccionado
+  selected_motivation <- input$motivation_type
+  
+  # Filtrar los datos de acuerdo al tipo de motivación seleccionado
+  if (selected_motivation == "motextr") {
+    country_data <- df_filtered %>%
+      group_by(cntry) %>%
+      summarise(mean_value = mean(motextr, na.rm = TRUE))
+    fill_color <- scale_fill_gradient(low = "#FFCCCC", high = "#CC0000", na.value = "grey", name = "Media")
+    plot_title <- "Nivel de Motivación Extrínseca en Europa Occidental"
+  } else if (selected_motivation == "motintr") {
+    country_data <- df_filtered %>%
+      group_by(cntry) %>%
+      summarise(mean_value = mean(motintr, na.rm = TRUE))
+    fill_color <- scale_fill_gradient(low = "#CCCCFF", high = "#0000CC", na.value = "grey", name = "Media")
+    plot_title <- "Nivel de Motivación Intrínseca en Europa Occidental"
+  } else {
+    country_data <- df_filtered %>%
+      group_by(cntry) %>%
+      summarise(mean_value = mean(motprosoc, na.rm = TRUE))
+    fill_color <- scale_fill_gradient(low = "#CCFFCC", high = "#006600", na.value = "grey", name = "Media")
+    plot_title <- "Nivel de Motivación Prosocial en Europa Occidental"
+  }
+  
+  # Ajustar los nombres de los países en country_data
+  country_data <- country_data %>%
+    mutate(
+      cntry = recode(cntry, 
+                     GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                     ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                     IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                     FI = "Finland", SE = "Sweden", NO = "Norway")
+    )
+  
+  # Fusionar los datos de motivación con el mapa
+  merged_data <- europe_map_filtered %>%
+    left_join(country_data, by = c("name_long" = "cntry"))
+  
+  # Crear el gráfico
+  ggplot() +
+    geom_sf(data = europe_map_filtered, fill = "grey", color = "black") + 
+    geom_sf(data = merged_data, aes(fill = mean_value), color = "black") +
+    fill_color +
+    theme_minimal() +
+    coord_sf(xlim = c(-10, 30), ylim = c(35, 70)) + 
+    labs(title = plot_title)
+})
+
+
+
+```
+
+
+Gráficos 4 {data-icon="fa-table"}
+=================================================
+
+Column {data-width=25%}
+------------------------------------------------------------------------
+### Opciones de visualización
+
+
+```{r}
+# Opciones de visualización
+# Selector de tipo de visualización
+selectInput("view_type", "Selecciona la visualización:",
+            choices = c("Principal motivación por país" = "principal",
+                        "Motivación Extrínseca" = "motextr",
+                        "Motivación Intrínseca" = "motintr",
+                        "Motivación Prosocial" = "motprosoc"),
+            selected = "principal")
+
+```
+
+
+Column {data-width=75%}
+------------------------------------------------------------------------
+### Gráfico de Europa occidental por tipo de motivación seleccionada
+
+```{r}
+renderPlot({
+  # Obtener el tipo de visualización seleccionado
+  view_type <- input$view_type
+  
+  if (view_type == "principal") {
+    # Calcular cuál es la motivación más alta para cada país
+    country_motivation <- df_filtered %>%
+      group_by(cntry) %>%
+      summarise(
+        mean_motprosoc = mean(motprosoc, na.rm = TRUE),
+        mean_motextr = mean(motextr, na.rm = TRUE),
+        mean_motintr = mean(motintr, na.rm = TRUE)
+      ) %>%
+      rowwise() %>%
+      mutate(
+        highest_motivation = case_when(
+          mean_motprosoc >= mean_motextr & mean_motprosoc >= mean_motintr ~ "Motprosoc",
+          mean_motextr >= mean_motprosoc & mean_motextr >= mean_motintr ~ "Motextr",
+          mean_motintr >= mean_motprosoc & mean_motintr >= mean_motextr ~ "Motintr"
+        )
+      ) %>%
+      ungroup()
+    
+    # Ajustar los nombres de los países en country_motivation
+    country_motivation <- country_motivation %>%
+      mutate(
+        cntry = recode(cntry, 
+                       GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                       ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                       IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                       FI = "Finland", SE = "Sweden", NO = "Norway")
+      )
+    
+    # Cargar el shapefile de los países de Europa
+    europe_map <- ne_countries(scale = "medium", continent = "Europe", returnclass = "sf")
+    
+    # Filtrar para los países de interés
+    selected_countries <- c("United Kingdom", "France", "Portugal", "Italy", "Spain", "Germany", 
+                            "Netherlands", "Belgium", "Ireland", "Austria", "Switzerland", 
+                            "Denmark", "Finland", "Sweden", "Norway")
+    
+    europe_map_filtered <- europe_map %>%
+      filter(name_long %in% selected_countries)
+    
+    # Fusionar los datos de motivación con el mapa
+    merged_data_motivation <- europe_map_filtered %>%
+      left_join(country_motivation, by = c("name_long" = "cntry"))
+    
+    # Crear el mapa con colores para cada tipo de motivación
+    ggplot() +
+      geom_sf(data = europe_map_filtered, fill = "grey", color = "black") + 
+      geom_sf(data = merged_data_motivation, aes(fill = highest_motivation), color = "black") +
+      scale_fill_manual(values = c("Motprosoc" = "green", "Motextr" = "red", "Motintr" = "blue"), na.value = "grey", name = "Motivación más alta") +
+      theme_minimal() +
+      coord_sf(xlim = c(-10, 30), ylim = c(35, 70)) + 
+      labs(title = "Principal tipo de motivación por países en Europa Occidental")
+    
+  } else {
+    # Calcular los datos de motivación seleccionada
+    if (view_type == "motextr") {
+      country_data <- df_filtered %>%
+        group_by(cntry) %>%
+        summarise(mean_value = mean(motextr, na.rm = TRUE))
+      fill_color <- scale_fill_gradient(low = "#FFCCCC", high = "#CC0000", na.value = "grey", name = "Media")
+      plot_title <- "Nivel de Motivación Extrínseca en Europa Occidental"
+    } else if (view_type == "motintr") {
+      country_data <- df_filtered %>%
+        group_by(cntry) %>%
+        summarise(mean_value = mean(motintr, na.rm = TRUE))
+      fill_color <- scale_fill_gradient(low = "#CCCCFF", high = "#0000CC", na.value = "grey", name = "Media")
+      plot_title <- "Nivel de Motivación Intrínseca en Europa Occidental"
+    } else {
+      country_data <- df_filtered %>%
+        group_by(cntry) %>%
+        summarise(mean_value = mean(motprosoc, na.rm = TRUE))
+      fill_color <- scale_fill_gradient(low = "#CCFFCC", high = "#006600", na.value = "grey", name = "Media")
+      plot_title <- "Nivel de Motivación Prosocial en Europa Occidental"
+    }
+    
+    # Ajustar los nombres de los países en country_data
+    country_data <- country_data %>%
+      mutate(
+        cntry = recode(cntry, 
+                       GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                       ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                       IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                       FI = "Finland", SE = "Sweden", NO = "Norway")
+      )
+    
+    # Cargar el shapefile de los países de Europa
+    europe_map <- ne_countries(scale = "medium", continent = "Europe", returnclass = "sf")
+    
+    # Filtrar para los países de interés
+    selected_countries <- c("United Kingdom", "France", "Portugal", "Italy", "Spain", "Germany", 
+                            "Netherlands", "Belgium", "Ireland", "Austria", "Switzerland", 
+                            "Denmark", "Finland", "Sweden", "Norway")
+    
+    europe_map_filtered <- europe_map %>%
+      filter(name_long %in% selected_countries)
+    
+    # Fusionar los datos de motivación con el mapa
+    merged_data <- europe_map_filtered %>%
+      left_join(country_data, by = c("name_long" = "cntry"))
+    
+    # Crear el gráfico
+    ggplot() +
+      geom_sf(data = europe_map_filtered, fill = "grey", color = "black") + 
+      geom_sf(data = merged_data, aes(fill = mean_value), color = "black") +
+      fill_color +
+      theme_minimal() +
+      coord_sf(xlim = c(-10, 30), ylim = c(35, 70)) + 
+      labs(title = plot_title)
+  }
+})
+
+```
+
+
+Comentarios al dashboard {data-icon="fa-table"}
+=================================================
+
+
+

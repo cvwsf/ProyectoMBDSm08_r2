@@ -636,7 +636,7 @@ print(country_motprosoc)
 print(country_motextr)
 print(country_motintr)
 
-##### Gráfico del mapa de Europa occidental con los resultados por MOTIVACIÓN
+##### Gráfico del mapa de Europa occidental con los resultados por cada TIPO de MOTIVACIÓN
 ##### mismo color, pero diferente saturación
 # Instalar y cargar las librerías necesarias
 if (!requireNamespace("ggplot2")) install.packages("ggplot2")
