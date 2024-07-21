@@ -13,8 +13,9 @@ output:
 ```{r setup, include=FALSE}
 library(flexdashboard)
 library(tidyverse)
-library(maps)
-library(DT)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -27,13 +28,6 @@ df_filtered <- read.csv("df_filtered.csv")
 
 Gráficos 1 {data-icon="fa-table"}
 =================================================
-
-
-Column {.sidebar data-heigth=400}
--------------------------------------------------
-
-
-
 
 Column {data-width=550}
 -------------------------------------------------
@@ -53,7 +47,7 @@ df_long_all_countries <- df_long_all_countries %>%
 # Crear el gráfico de mariposa
 ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
   geom_bar(stat = "identity", position = "stack") +
-  labs(title = "Comparación de Motivaciones por Sexo en Todos los Países",
+  labs(title = "Comparación de Motivaciones por Sexo en Europa occidental",
        x = "Motivación",
        y = "Valor de Motivación",
        fill = "Sexo") +
@@ -150,10 +144,70 @@ Gráficos 2 {data-icon="fa-table"}
 =================================================
 
 
+```{r}
+# Calcular cuál es la motivación más alta para cada país
+country_motivation <- df_filtered %>%
+  group_by(cntry) %>%
+  summarise(
+    mean_motprosoc = mean(motprosoc, na.rm = TRUE),
+    mean_motextr = mean(motextr, na.rm = TRUE),
+    mean_motintr = mean(motintr, na.rm = TRUE)
+  ) %>%
+  rowwise() %>%
+  mutate(
+    highest_motivation = case_when(
+      mean_motprosoc >= mean_motextr & mean_motprosoc >= mean_motintr ~ "Motprosoc",
+      mean_motextr >= mean_motprosoc & mean_motextr >= mean_motintr ~ "Motextr",
+      mean_motintr >= mean_motprosoc & mean_motintr >= mean_motextr ~ "Motintr"
+    )
+  ) %>%
+  ungroup()
+
+# Ajustar los nombres de los países en country_motivation
+country_motivation <- country_motivation %>%
+  mutate(
+    cntry = recode(cntry, 
+                   GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                   ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                   IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                   FI = "Finland", SE = "Sweden", NO = "Norway")
+  )
+
+# Cargar el shapefile de los países de Europa
+europe_map <- ne_countries(scale = "medium", continent = "Europe", returnclass = "sf")
+
+# Filtrar para los países de interés
+selected_countries <- c("United Kingdom", "France", "Portugal", "Italy", "Spain", "Germany", 
+                        "Netherlands", "Belgium", "Ireland", "Austria", "Switzerland", 
+                        "Denmark", "Finland", "Sweden", "Norway")
+
+europe_map_filtered <- europe_map %>%
+  filter(name_long %in% selected_countries)
+
+# Fusionar los datos de motivación con el mapa
+merged_data_motivation <- europe_map_filtered %>%
+  left_join(country_motivation, by = c("name_long" = "cntry"))
+
+# Crear el mapa con colores para cada tipo de motivación
+ggplot() +
+  geom_sf(data = europe_map_filtered, fill = "grey", color = "black") + 
+  geom_sf(data = merged_data_motivation, aes(fill = highest_motivation), color = "black") +
+  scale_fill_manual(values = c("Motprosoc" = "green", "Motextr" = "red", "Motintr" = "blue"), na.value = "grey", name = "Motivación más alta") +
+  theme_minimal() +
+  coord_sf(xlim = c(-10, 30), ylim = c(35, 70)) + 
+  labs(title = "Tipo de Motivación más Alto en Europa Occidental")
+
+
+```
 
 
 Column {.sidebar data-heigth=400}
 -------------------------------------------------
+
+
+
+
+
 
 
 Acerca del estudio {data-icon="fa-table"}

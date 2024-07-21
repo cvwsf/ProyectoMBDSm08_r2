@@ -18,9 +18,9 @@
 ##### Correlaciones entre las variables numéricas
 ##### Análisis descriptivo y pruebas de normalidad
 ######### Gráficos y diferencias por sexo / motivaciones
-####### Gráficos y diferencias por sexo / happy, inpfree, ipeqopt y ipfrule 
-##### Eisced / MOTIVACIONES
-##### Agea / MOTIVACIONES
+###### Gráficos y diferencias por sexo / happy, inpfree, ipeqopt y ipfrule 
+######### Eisced / MOTIVACIONES
+######### Agea / MOTIVACIONES
 ####### Clasificación por PAÍSES para cada una de las variables de motivación
 ######### Gráfico de Europa occidental con los resultados por cada tipo de motivación
 ######### Gráfico de Europa occidental con el tipo de motivación más alto por país
