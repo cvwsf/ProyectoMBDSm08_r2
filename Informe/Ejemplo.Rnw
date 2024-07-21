@@ -6,7 +6,7 @@
 
 \title{Ejemplo de Documento Sweave}
 \author{Carlos Schmidt}
-\date{\today}
+\date{\Sexpr{Sys.Date()}}
 
 
 
@@ -87,6 +87,14 @@ xtable::xtable(summary(mod))
 @
 
 
+<<eval=FALSE>>=
+# Para establecer globalmente tamaño de gráficos
+knitr::opts_chunk$set(echo = FALSE, fig.height = 10, fig.width = 10)
+@
+
+
+Ejemplo de código de R ejecutable en fragmento de texto
+La base de datos \texttt{iris} tiene \emph{\Sexpr{nrow(iris)}} observaciones.
 
 
 

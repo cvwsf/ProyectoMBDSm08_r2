@@ -6,7 +6,7 @@
 
 \title{Ejemplo de Documento Sweave}
 \author{Carlos Schmidt}
-\date{\today}
+\date{2024-07-21}
 
 
 
@@ -92,7 +92,7 @@ Individuo 4 & g & h \\
 > xtable::xtable(summary(mod))
 \end{Sinput}
 % latex table generated in R 4.3.2 by xtable 1.8-4 package
-% Sun Jul 21 20:14:37 2024
+% Sun Jul 21 20:23:57 2024
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -110,6 +110,16 @@ Individuo 4 & g & h \\
 \end{table}\end{Schunk}
 
 
+\begin{Schunk}
+\begin{Sinput}
+> # Para establecer globalmente tamaño de gráficos
+> knitr::opts_chunk$set(echo = FALSE, fig.height = 10, fig.width = 10)
+\end{Sinput}
+\end{Schunk}
+
+
+Ejemplo de código de R ejecutable en fragmento de texto
+La base de datos \texttt{iris} tiene \emph{150} observaciones.
 
 
 
