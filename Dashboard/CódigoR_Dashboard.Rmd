@@ -7,6 +7,7 @@ output:
     vertical_layout: fill
     social: menu
     source_code: embed
+    runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -22,6 +23,17 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r}
 df_filtered <- read.csv("df_filtered.csv")
 ```
+
+
+Gráficos 1 {data-icon="fa-table"}
+=================================================
+
+
+Column {.sidebar data-heigth=400}
+-------------------------------------------------
+
+
+
 
 Column {data-width=550}
 -------------------------------------------------
@@ -53,6 +65,8 @@ ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
 
 ```
 
+
+
 Column {data-width=450}
 -------------------------------------------------
 
@@ -81,7 +95,7 @@ df_long_age_motivation_summary <- df_long_age_motivation %>%
 # Crear el gráfico con tres barras de motivaciones para cada segmento de edad
 ggplot(df_long_age_motivation_summary, aes(x = motivation, y = mean_value, fill = age_category)) +
   geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Comparación de la Media de Motivaciones por Categoría de Edad",
+  labs(title = "Media de Motivaciones por Categoría de Edad",
        x = "Motivación",
        y = "Media de Motivación",
        fill = "Categoría de Edad") +
@@ -121,7 +135,7 @@ color_palette <- c("ISCED 1-4" = "#bdd7e7", "ISCED 5" = "#6baed6", "ISCED 6" = "
 # Crear el gráfico con tres barras de motivaciones para cada nivel educativo
 ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fill = eisced_grouped)) +
   geom_bar(stat = "identity", position = "dodge") +
-  labs(title = "Comparación de la Media de Motivaciones por Nivel Educativo",
+  labs(title = "Media de Motivaciones por Nivel Educativo",
        x = "Motivación",
        y = "Media de Motivación",
        fill = "Nivel Educativo") +
@@ -131,5 +145,23 @@ ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fi
 
 
 ```
+
+Gráficos 2 {data-icon="fa-table"}
+=================================================
+
+
+
+
+Column {.sidebar data-heigth=400}
+-------------------------------------------------
+
+
+Acerca del estudio {data-icon="fa-table"}
+=================================================
+
+Inputs {.sidebar data-heigth=400}
+-------------------------------------------------
+
+Bla bla bla
 
 ---
