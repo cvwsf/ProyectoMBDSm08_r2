@@ -37,14 +37,6 @@ df_filtered <- df_filtered %>%
                    FI = "Finland", SE = "Sweden", NO = "Norway")
   )
 
-# Para resolver problemas encontrados, recuperamos crear categorías de edad y convertir a factor
-df_filtered <- df_filtered %>%
-  mutate(age_category = cut(agea, 
-                            breaks = c(15, 20, 30, 40, 50, 60, 70, 80, Inf), 
-                            labels = c("15-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81+"),
-                            right = FALSE),
-         age_category = factor(age_category, levels = c("15-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81+")))
-
 ```
 
 
@@ -461,6 +453,7 @@ renderPlot({
 ```
 
 
+
 Tabla {data-icon="fa-table"}
 =================================================
 
@@ -482,12 +475,18 @@ summary_country <- df_filtered %>%
             mean_motextr = round(mean(motextr, na.rm = TRUE), 2),
             mean_motintr = round(mean(motintr, na.rm = TRUE), 2))
 
+# Verificar la estructura de summary_country
+print(summary_country)
+
 # Mostrar la tabla resumen usando DT
 datatable(summary_country, 
           caption = 'Media de las motivaciones por país', 
           rownames = FALSE, 
           filter = 'top', 
-          options = list(pageLength = 15, autoWidth = TRUE, paging = TRUE, searching = FALSE))
+          options = list(pageLength = 15, autoWidth = TRUE, paging = TRUE, searching = TRUE))
+
+
+
 
 ```
 
@@ -504,12 +503,17 @@ summary_sex <- df_filtered %>%
             mean_motextr = round(mean(motextr, na.rm = TRUE), 2),
             mean_motintr = round(mean(motintr, na.rm = TRUE), 2))
 
+# Verificar la estructura de summary_sex
+print(summary_sex)
+
 # Mostrar la tabla resumen usando DT
 datatable(summary_sex, 
           caption = 'Media de las motivaciones por sexo', 
           rownames = FALSE, 
           filter = 'top', 
-          options = list(pageLength = 15, autoWidth = TRUE, paging = TRUE, searching = FALSE))
+          options = list(pageLength = 15, autoWidth = TRUE, paging = TRUE, searching = TRUE))
+
+
 
 
 ```
@@ -520,14 +524,6 @@ Column {data-width=33%}
 ## Tabla de las medias de motivaciones por categoría de edad
 
 ```{r}
-# Crear categorías de edad y convertir a factor
-df_filtered <- df_filtered %>%
-  mutate(age_category = cut(agea, 
-                            breaks = c(15, 20, 30, 40, 50, 60, 70, 80, Inf), 
-                            labels = c("15-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81+"),
-                            right = FALSE),
-         age_category = factor(age_category, levels = c("15-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81+")))
-
 # Media de las motivaciones por categoría de edad
 summary_age <- df_filtered %>%
   group_by(age_category) %>%
@@ -535,12 +531,17 @@ summary_age <- df_filtered %>%
             mean_motextr = round(mean(motextr, na.rm = TRUE), 2),
             mean_motintr = round(mean(motintr, na.rm = TRUE), 2))
 
+# Verificar la estructura de summary_age
+print(summary_age)
+
 # Mostrar la tabla resumen usando DT
 datatable(summary_age, 
           caption = 'Media de las motivaciones por categoría de edad', 
           rownames = FALSE, 
           filter = 'top', 
-          options = list(pageLength = 15, autoWidth = TRUE, paging = TRUE, searching = FALSE))
+          options = list(pageLength = 15, autoWidth = TRUE, paging = TRUE, searching = TRUE))
+
+
 
 
 
