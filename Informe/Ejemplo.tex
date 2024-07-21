@@ -1,39 +1,32 @@
 \documentclass{article}
 \usepackage{multicol}
 
+\renewcommand{\refname}{Referencias}
+\renewcommand{\table}{Tabla}
+
+\title{Ejemplo de Documento Sweave}
+\author{Carlos Schmidt}
+\date{\today}
+
+
+
+
+
+
 \usepackage{Sweave}
 \begin{document}
 \input{Ejemplo-concordance}
 
-\title{Ejemplo de Documento Sweave}
-\author{Tu Nombre}
-\date{\today}
-
 \maketitle
 
-\begin{multicols}{2}
-Este es un ejemplo de documento Sweave que incluye múltiples columnas.
+\section*{Primeros pasos}
 
-\begin{Schunk}
-\begin{Sinput}
-> # Código R de ejemplo
-> x <- rnorm(100)
-> summary(x)
-\end{Sinput}
-\begin{Soutput}
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
--2.1391 -0.7871  0.1234  0.1013  0.7895  2.2650 
-\end{Soutput}
-\end{Schunk}
+\begin{enumerate}
+\item Punto 1
+\item Punto 2
+\item Punto 3
 
-Gráfico de ejemplo generado por R:
-
-\includegraphics{plot_example.pdf}
-
-\end{multicols}
-
-\end{document}
-
+\end{enumerate}
 
 
 \begin{Schunk}
@@ -41,13 +34,86 @@ Gráfico de ejemplo generado por R:
 > if(!require(tinytex)){
 +   install.packages('tinytex')
 +   library(tinytex)
-+   tinytex::install_tinytex()
++   
 + }
-> 
 \end{Sinput}
 \end{Schunk}
 
 
+\begin{Schunk}
+\begin{Sinput}
+> # Para instalar otros paquetes
+> tinytex::tlmgr_install('blindtext')
+\end{Sinput}
+\end{Schunk}
+
+\begin{multicols}{2}
+[
+\section{Texto con formato}
+Algún texto aleatorio
+]
+\noindent \underline{Cursiva}\\  \emph{\blindtext}   \\   \underline{Typewritter}  \\   \texttt{\blindtext}
+\end{multicols}
+
+
+\begin{multicols}{2}
+[
+\subsection{Tamaño de fuente}
+Modificando tamaño de fuente con palabras reservadas en \LaTex
+]
+{\Huge \blindtext}   {\scriptsize \blindtext}
+\end{multicols}
+
+
+\section{Tablas en LaTex}
+\subsection{Tablas generadas desde Latex}
+\begin{table}[h!]
+\caption{Esto es un ejemplo de una tabla simple en Latex.}
+\begin{tabular}{1 | c c}
+\hline
+\bf{Observación} & \bf{Var1} & \bf{Var2} \\
+\hline
+Individuo 1 & a & b \\
+Individuo 2 & c & d \\
+Individuo 3 & e & f \\
+Individuo 4 & g & h \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection{Tablas generadas desde R}
+\begin{Schunk}
+\begin{Sinput}
+> # El encabezamiento de arriba sirve para tener la tabla sin el código que el sistema genera para generarla
+> data(iris)
+> mod <- lm(Sepal.Width ~ ., data=iris)
+> xtable::xtable(summary(mod))
+\end{Sinput}
+% latex table generated in R 4.3.2 by xtable 1.8-4 package
+% Sun Jul 21 20:14:37 2024
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\ 
+  \hline
+(Intercept) & 1.6572 & 0.2559 & 6.47 & 0.0000 \\ 
+  Sepal.Length & 0.3778 & 0.0656 & 5.76 & 0.0000 \\ 
+  Petal.Length & -0.1876 & 0.0835 & -2.25 & 0.0262 \\ 
+  Petal.Width & 0.6257 & 0.1234 & 5.07 & 0.0000 \\ 
+  Speciesversicolor & -1.1603 & 0.1933 & -6.00 & 0.0000 \\ 
+  Speciesvirginica & -1.3983 & 0.2771 & -5.05 & 0.0000 \\ 
+   \hline
+\end{tabular}
+\end{table}\end{Schunk}
+
+
+
+
+
+\end{document}
 
 \begin{Schunk}
 \begin{Sinput}

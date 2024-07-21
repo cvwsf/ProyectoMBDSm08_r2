@@ -1,44 +1,96 @@
 \documentclass{article}
 \usepackage{multicol}
 
+\renewcommand{\refname}{Referencias}
+\renewcommand{\table}{Tabla}
+
+\title{Ejemplo de Documento Sweave}
+\author{Carlos Schmidt}
+\date{\today}
+
+
+
+
+
+
 \begin{document}
 \SweaveOpts{concordance=TRUE}
 
-\title{Ejemplo de Documento Sweave}
-\author{Tu Nombre}
-\date{\today}
-
 \maketitle
 
-\begin{multicols}{2}
-Este es un ejemplo de documento Sweave que incluye múltiples columnas.
+\section*{Primeros pasos}
 
-<<echo=TRUE>>=
-# Código R de ejemplo
-x <- rnorm(100)
-summary(x)
-@
+\begin{enumerate}
+\item Punto 1
+\item Punto 2
+\item Punto 3
 
-Gráfico de ejemplo generado por R:
-
-\includegraphics{plot_example.pdf}
-
-\end{multicols}
-
-\end{document}
-
+\end{enumerate}
 
 
 <<>>=
 if(!require(tinytex)){
   install.packages('tinytex')
   library(tinytex)
-  tinytex::install_tinytex()
+  
 }
-
 @
 
 
+<<>>=
+# Para instalar otros paquetes
+tinytex::tlmgr_install('blindtext')
+@
+
+\begin{multicols}{2}
+[
+\section{Texto con formato}
+Algún texto aleatorio
+]
+\noindent \underline{Cursiva}\\  \emph{\blindtext}   \\   \underline{Typewritter}  \\   \texttt{\blindtext}
+\end{multicols}
+
+
+\begin{multicols}{2}
+[
+\subsection{Tamaño de fuente}
+Modificando tamaño de fuente con palabras reservadas en \LaTex
+]
+{\Huge \blindtext}   {\scriptsize \blindtext}
+\end{multicols}
+
+
+\section{Tablas en LaTex}
+\subsection{Tablas generadas desde Latex}
+\begin{table}[h!]
+\caption{Esto es un ejemplo de una tabla simple en Latex.}
+\begin{tabular}{1 | c c}
+\hline
+\bf{Observación} & \bf{Var1} & \bf{Var2} \\
+\hline
+Individuo 1 & a & b \\
+Individuo 2 & c & d \\
+Individuo 3 & e & f \\
+Individuo 4 & g & h \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\subsection{Tablas generadas desde R}
+<<results=tex>>=
+# El encabezamiento de arriba sirve para tener la tabla sin el código que el sistema genera para generarla
+data(iris)
+mod <- lm(Sepal.Width ~ ., data=iris)
+xtable::xtable(summary(mod))
+@
+
+
+
+
+
+\end{document}
 
 <<>>=
 
