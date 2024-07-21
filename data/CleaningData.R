@@ -31,7 +31,8 @@ print(variable_types)
 # 5. Variable eisced: exclusión de sus valores 0 y 55, agrupación de categorías y conversión en factor.
 # 6. Descarte de las variables no consideradas relevantes para la tare y reordenación de columnas.
 # 7. AFC para AGRUPACIÓN de variables en los 3 tipos de motivación teorizados en la literatura pertinente e inclusión en la BD.
-# 8. Creación del archivo depurado.
+# 8. Identificación de los sujetos con puntuaciones superiores en cada tipo de motivación e inclusión en la BD como nuevas variables.
+# 9. Creación del archivo depurado
 
 
 ##### 1. Conversión de las variables gndr, bthcld y atncrse a categórica/factor (están como numéricas)
@@ -383,8 +384,57 @@ df_filtered$motintr <- rowMeans(df_filtered[, c("ipadvnt", "ipcrtiv", "ipgdtim")
 # Verificar las nuevas variables
 head(df_filtered[, c("motprosoc", "motextr", "motintr")])
 
+##### 8. Identificación de los sujetos con puntuaciones superiores en cada tipo de motivación e inclusión en la BD como nuevas variables.
 
-# Guardar el DataFrame depurado en un nuevo archivo CSV
+# Determinar el número de sujetos que tienen una puntuación superior en cada tipo de motivación en comparación con las otras dos.
+
+# Cargar las librerías necesarias
+library(dplyr)
+
+# Crear nuevas columnas para identificar los sujetos con puntuaciones superiores en cada tipo de motivación
+df_filtered <- df_filtered %>%
+  mutate(
+    highest_motextr = motextr >= motintr & motextr >= motprosoc,
+    highest_motintr = motintr >= motextr & motintr >= motprosoc,
+    highest_motprosoc = motprosoc >= motextr & motprosoc >= motintr
+  )
+
+# Contar el número de sujetos para cada tipo de motivación superior
+counts <- df_filtered %>%
+  summarise(
+    motextr_count = sum(highest_motextr, na.rm = TRUE),
+    motintr_count = sum(highest_motintr, na.rm = TRUE),
+    motprosoc_count = sum(highest_motprosoc, na.rm = TRUE)
+  )
+
+# Calcular los porcentajes
+percentages <- counts / nrow(df_filtered) * 100
+
+# Combinar los resultados en un data frame
+results <- bind_rows(counts, percentages) %>%
+  mutate(type = c("Count", "Percentage"))
+
+# Mostrar los resultados
+print(results)
+
+# Cargar las librerías necesarias
+library(dplyr)
+library(ggplot2)
+
+# Crear nuevas columnas para identificar los sujetos con puntuaciones superiores en cada tipo de motivación
+df_filtered <- df_filtered %>%
+  mutate(
+    highest_motextr = motextr >= motintr & motextr >= motprosoc,
+    highest_motintr = motintr >= motextr & motintr >= motprosoc,
+    highest_motprosoc = motprosoc >= motextr & motprosoc >= motintr
+  )
+
+# Verificar la estructura de la base de datos filtrada para asegurarnos de que las nuevas columnas se hayan añadido
+str(df_filtered)
+
+
+
+##### 9. Guardar el DataFrame depurado en un nuevo archivo CSV
 write_csv(df_filtered, "df_filtered.csv")
 
 
@@ -398,6 +448,7 @@ write_csv(df_filtered, "df_filtered.csv")
 # 4. Inversión de la variable 'happy'
 # 5. Variable eisced: exclusión de sus valores 0 y 55, agrupación de categorías y conversión en factor
 # 6. Descarte de las variables no consideradas relevantes para la tarea y reordenación de columnas.
-# 7. AFC para AGRUPACIÓN de variables en los 3 tipos de motivación teorizados en la literatura pertinente e inclusión en la BD
-# 8. Creación del archivo depurado
+# 7. AFC para AGRUPACIÓN de variables en los 3 tipos de motivación teorizados en la literatura pertinente e inclusión en la BD.
+# 8. Identificación de los sujetos con puntuaciones superiores en cada tipo de motivación e inclusión en la BD como nuevas variables.
+# 9. Creación del archivo depurado
 
