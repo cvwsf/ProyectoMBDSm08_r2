@@ -142,6 +142,7 @@ ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fi
 
 ```
 
+
 Gráficos 2 {data-icon="fa-table"}
 =================================================
 
@@ -486,16 +487,18 @@ ggplot() +
 
 Column {data-width=50%}
 ------------------------------------------------------------------------
-### Gráfico de Europa occidental por tipo de motivación seleccionada
 
+### Gráfico de Europa occidental por tipo de motivación seleccionada
 
 ```{r}
 ##### Gráfico del mapa de Europa occidental por tipo de motivación seleccionada
 
+# Selector de motivación
 # Selector de tipo de motivación
 selectInput("motivation_type", "Selecciona el tipo de motivación:",
             choices = c("Motextr" = "motextr", "Motintr" = "motintr", "Motprosoc" = "motprosoc"),
             selected = "motextr")
+
 # Gráfico reactivo de motivación
 renderPlot({
   # Obtener el tipo de motivación seleccionado

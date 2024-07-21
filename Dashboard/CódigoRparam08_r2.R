@@ -14,17 +14,17 @@
 ###### EXPLORACIÓN
 ###### A continuación, llevamos a cabo las siguientes exploraciones:
 
-##### Gráficos para ver DISTRIBUCIÓN DE LOS DATOS de las variables
-##### Correlaciones entre las variables numéricas
-##### Análisis descriptivo y pruebas de normalidad
+#### Gráficos para ver DISTRIBUCIÓN DE LOS DATOS de las variables
+#### Correlaciones entre las variables numéricas
+#### Análisis descriptivo y pruebas de normalidad
 ######### Gráficos y diferencias por sexo / motivaciones
-###### Gráficos y diferencias por sexo / happy, inpfree, ipeqopt y ipfrule 
+##### Gráficos y diferencias por sexo / happy, inpfree, ipeqopt y ipfrule 
 ######### Eisced / MOTIVACIONES
 ######### Agea / MOTIVACIONES
-####### Clasificación por PAÍSES para cada una de las variables de motivación
+###### Clasificación por PAÍSES para cada una de las variables de motivación
 ######### Gráfico de Europa occidental con los resultados por cada tipo de motivación
 ######### Gráfico de Europa occidental con el tipo de motivación más alto por país
-####### Gráfico de Europa occidental y diferencias por países por cada motivación y por happy, impfree, ipeqopt e ipfrule
+###### Gráfico de Europa occidental y diferencias por países por cada motivación y por happy, impfree, ipeqopt e ipfrule
 ######### Gráfico de mariposa por sexo (ejemplo)
 
 
