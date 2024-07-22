@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.22)  22 JUL 2024 12:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.22)  22 JUL 2024 17:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -133,6 +133,13 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \c@blind@randommax=\count297
 \c@blind@pangramcount=\count298
 \c@blind@pangrammax=\count299
+) (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count300
+\float@exts=\toks17
+\float@box=\box98
+\@float@everytoks=\toks18
+\@floatcapt=\box99
 ) (c:/Program Files/R/R-4.3.2/share/texmf/tex/latex/Sweave.sty
 Package: Sweave 
  (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
@@ -143,7 +150,7 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks17
+\KV@toks@=\toks19
 ) (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2024/05/23 v1.4g Standard LaTeX Graphics (DPC,SPQR)
  (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
@@ -159,11 +166,11 @@ File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 \Gin@req@width=\dimen165
 ) (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
-\FV@CodeLineNo=\count300
+\FV@CodeLineNo=\count301
 \FV@InFile=\read2
-\FV@TabBox=\box98
-\c@FancyVerbLine=\count301
-\FV@StepNumber=\count302
+\FV@TabBox=\box100
+\c@FancyVerbLine=\count302
+\FV@StepNumber=\count303
 \FV@OutFile=\write3
 ) (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
@@ -171,25 +178,25 @@ Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 )) (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count303
-\l__pdf_internal_box=\box99
+\l__color_backend_stack_int=\count304
+\l__pdf_internal_box=\box101
 ) (./Ejemplo.aux)
 \openout1 = `Ejemplo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
  (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
  (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
@@ -217,37 +224,40 @@ Package grfext Info: Graphics extension search list:
  (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) (./Ejemplo-concordance.tex)
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 19.
- (c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/t1cmtt.fd
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 19.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 19.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 19.
+
+Overfull \hbox (2.57332pt too wide) in paragraph at lines 35--35
+[]\T1/cmr/bx/n/14.4 Pregunta 1: ¾Cómo varían las tres mo-ti-va-ciones
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 45.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 45.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 89.
+(c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-
-[1
-
-{c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 29.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 29.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 29.
-
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.44 La base de datos \texttt{df_filtered}
+l.89 La base de datos \texttt{df_filtered}
                                            tiene \emph{25827} observaciones.
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 44.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 44.
 ! Extra }, or forgotten $.
 <recently read> \egroup 
                         
-l.44 La base de datos \texttt{df_filtered}
+l.89 La base de datos \texttt{df_filtered}
                                            tiene \emph{25827} observaciones.
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -258,267 +268,278 @@ deleted material, e.g., by typing `I$}'.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.45 
+l.90 
      
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 Lorem ipsum dolor sit amet,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 consectetuer adipiscing elit.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 Etiam lobortis facilisis sem.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 Nullam nec mi et neque pharetra
  []
 
 
-Overfull \hbox (5.7077pt too wide) in paragraph at lines 52--53
+Overfull \hbox (5.7077pt too wide) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 sollicitudin. Praesent imperdiet
  []
 
 
-Overfull \hbox (0.45898pt too wide) in paragraph at lines 52--53
+Overfull \hbox (0.45898pt too wide) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 mi nec ante. Donec ullamcorper,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 felis non sodales commodo,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 lectus velit ultrices augue, a
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 dignissim nibh lectus placerat
  []
 
 
-Overfull \hbox (10.95642pt too wide) in paragraph at lines 52--53
+Overfull \hbox (10.95642pt too wide) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 pede. Vivamus nunc nunc, molestie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 ut, ultricies vel, semper in,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 velit. Ut porttitor. Praesent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 in sapien. Lorem ipsum dolor
  []
 
 
-Overfull \hbox (5.7077pt too wide) in paragraph at lines 52--53
+Overfull \hbox (5.7077pt too wide) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 sit amet, consectetuer adipiscing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 elit. Duis fringilla tristique
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 neque. Sed interdum libero ut
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 metus. Pellentesque placerat.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 Nam rutrum augue a leo. Morbi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 sed elit sit amet ante lobortis
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 sollicitudin. Praesent blandit
  []
 
 
-Overfull \hbox (0.45898pt too wide) in paragraph at lines 52--53
+Overfull \hbox (0.45898pt too wide) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 blandit mauris. Praesent lectus
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 tellus, aliquet aliquam, luctus
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 a, egestas a, turpis. Mauris
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 lacinia lorem sit amet ipsum.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/it/10 Nunc quis urna dictum turpis
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 Lorem ipsum dolor sit amet,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 consectetuer adipiscing elit.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 Etiam lobortis facilisis sem.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 Nullam nec mi et neque pharetra
  []
 
 
-Overfull \hbox (5.7077pt too wide) in paragraph at lines 52--53
+Overfull \hbox (5.7077pt too wide) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 sollicitudin. Praesent imperdiet
  []
 
 
-Overfull \hbox (0.45898pt too wide) in paragraph at lines 52--53
+Overfull \hbox (0.45898pt too wide) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 mi nec ante. Donec ullamcorper,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 felis non sodales commodo,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 lectus velit ultrices augue, a
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 dignissim nibh lectus placerat
  []
 
 
-Overfull \hbox (10.95642pt too wide) in paragraph at lines 52--53
+Overfull \hbox (10.95642pt too wide) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 pede. Vivamus nunc nunc, molestie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 ut, ultricies vel, semper in,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 velit. Ut porttitor. Praesent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 in sapien. Lorem ipsum dolor
  []
 
 
-Overfull \hbox (5.7077pt too wide) in paragraph at lines 52--53
+Overfull \hbox (5.7077pt too wide) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 sit amet, consectetuer adipiscing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 elit. Duis fringilla tristique
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 neque. Sed interdum libero ut
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 metus. Pellentesque placerat.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 Nam rutrum augue a leo. Morbi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 sed elit sit amet ante lobortis
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 sollicitudin. Praesent blandit
  []
 
 
-Overfull \hbox (0.45898pt too wide) in paragraph at lines 52--53
+Overfull \hbox (0.45898pt too wide) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 blandit mauris. Praesent lectus
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 tellus, aliquet aliquam, luctus
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 a, egestas a, turpis. Mauris
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 lacinia lorem sit amet ipsum.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--53
+Underfull \hbox (badness 10000) in paragraph at lines 97--98
 \T1/cmtt/m/n/10 Nunc quis urna dictum turpis
  []
 
-[2]
+
+Overfull \vbox (27.9176pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (27.9176pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (0.50034pt too high) has occurred while \output is active []
+
+ [1
+
+{c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 ! Undefined control sequence.
 <argument> ...e con palabras reservadas en \LaTex 
                                                   
-l.61 {
-      \Huge \blindtext}   {\scriptsize \blindtext}
+l.106 {
+       \Huge \blindtext}   {\scriptsize \blindtext}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -526,349 +547,351 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 []\T1/cmtt/m/n/24.88 Lorem ipsum
  []
 
 
-Overfull \hbox (16.45439pt too wide) in paragraph at lines 61--62
+Overfull \hbox (16.45439pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 dolor sit amet,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 consectetuer
  []
 
 
-Overfull \hbox (28.71802pt too wide) in paragraph at lines 61--62
+Overfull \hbox (28.71802pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 adipiscing elit.
  []
 
 
-Overfull \hbox (4.19077pt too wide) in paragraph at lines 61--62
+Overfull \hbox (4.19077pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 Etiam lobortis
  []
 
 
-Overfull \hbox (4.19077pt too wide) in paragraph at lines 61--62
+Overfull \hbox (4.19077pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 facilisis sem.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 Nullam nec mi
  []
 
 
-Overfull \hbox (40.98164pt too wide) in paragraph at lines 61--62
+Overfull \hbox (40.98164pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 et neque pharetra
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 sollicitudin.
  []
 
 
-Overfull \hbox (53.24527pt too wide) in paragraph at lines 61--62
+Overfull \hbox (53.24527pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 Praesent imperdiet
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 mi nec ante.
  []
 
 
-Overfull \hbox (53.24527pt too wide) in paragraph at lines 61--62
+Overfull \hbox (53.24527pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 Donec ullamcorper,
  []
 
 
-Overfull \hbox (40.98164pt too wide) in paragraph at lines 61--62
+Overfull \hbox (40.98164pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 felis non sodales
  []
 
 
-Overfull \hbox (16.45439pt too wide) in paragraph at lines 61--62
+Overfull \hbox (16.45439pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 commodo, lectus
  []
 
 
-Overfull \hbox (4.19077pt too wide) in paragraph at lines 61--62
+Overfull \hbox (4.19077pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 velit ultrices
  []
 
 
-Overfull \hbox (53.24527pt too wide) in paragraph at lines 61--62
+Overfull \hbox (53.24527pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 augue, a dignissim
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 nibh lectus
  []
 
 
-Overfull \hbox (4.19077pt too wide) in paragraph at lines 61--62
+Overfull \hbox (4.19077pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 placerat pede.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 Vivamus nunc
  []
 
 
-Overfull \hbox (4.19077pt too wide) in paragraph at lines 61--62
+Overfull \hbox (4.19077pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 nunc, molestie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 ut, ultricies
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 vel, semper
  []
 
 
-Overfull \hbox (4.19077pt too wide) in paragraph at lines 61--62
+Overfull \hbox (4.19077pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 in, velit. Ut
  []
 
 
-Overfull \hbox (77.77252pt too wide) in paragraph at lines 61--62
+Overfull \hbox (77.77252pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 porttitor. Praesent
  []
 
 
-Overfull \hbox (40.98164pt too wide) in paragraph at lines 61--62
+Overfull \hbox (40.98164pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 in sapien. Lorem
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 ipsum dolor
  []
 
 
-Overfull \hbox (102.29977pt too wide) in paragraph at lines 61--62
+Overfull \hbox (102.29977pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 sit amet, consectetuer
  []
 
 
-Overfull \hbox (28.71802pt too wide) in paragraph at lines 61--62
+Overfull \hbox (28.71802pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 adipiscing elit.
  []
 
 
-Overfull \hbox (4.19077pt too wide) in paragraph at lines 61--62
+Overfull \hbox (4.19077pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 Duis fringilla
  []
 
 
-Overfull \hbox (28.71802pt too wide) in paragraph at lines 61--62
+Overfull \hbox (28.71802pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 tristique neque.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 Sed interdum
  []
 
 
-Overfull \hbox (28.71802pt too wide) in paragraph at lines 61--62
+Overfull \hbox (28.71802pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 libero ut metus.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 Pellentesque
  []
 
 
-Overfull \hbox (4.19077pt too wide) in paragraph at lines 61--62
+Overfull \hbox (4.19077pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 placerat. Nam
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 rutrum augue
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 a leo. Morbi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 sed elit sit
  []
 
 
-Overfull \hbox (53.24527pt too wide) in paragraph at lines 61--62
+Overfull \hbox (53.24527pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 amet ante lobortis
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 sollicitudin.
  []
 
 
-Overfull \hbox (28.71802pt too wide) in paragraph at lines 61--62
+Overfull \hbox (28.71802pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 Praesent blandit
  []
 
 
-Overfull \hbox (16.45439pt too wide) in paragraph at lines 61--62
+Overfull \hbox (16.45439pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 blandit mauris.
  []
 
 
-Overfull \hbox (16.45439pt too wide) in paragraph at lines 61--62
+Overfull \hbox (16.45439pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 Praesent lectus
  []
 
 
-Overfull \hbox (16.45439pt too wide) in paragraph at lines 61--62
+Overfull \hbox (16.45439pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 tellus, aliquet
  []
 
 
-Overfull \hbox (16.45439pt too wide) in paragraph at lines 61--62
+Overfull \hbox (16.45439pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 aliquam, luctus
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 a, egestas a,
  []
 
 
-Overfull \hbox (16.45439pt too wide) in paragraph at lines 61--62
+Overfull \hbox (16.45439pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 turpis. Mauris
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 lacinia lorem
  []
 
 
-Overfull \hbox (16.45439pt too wide) in paragraph at lines 61--62
+Overfull \hbox (16.45439pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 sit amet ipsum.
  []
 
 
-Overfull \hbox (4.19077pt too wide) in paragraph at lines 61--62
+Overfull \hbox (4.19077pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 Nunc quis urna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 dictum turpis
  []
 
 
-Overfull \hbox (28.71802pt too wide) in paragraph at lines 61--62
+Overfull \hbox (28.71802pt too wide) in paragraph at lines 106--107
 \T1/cmtt/m/n/24.88 accumsan semper.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 Lorem ipsum dolor sit amet, consectetuer
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 adipiscing elit. Etiam lobortis facilisis
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 sem. Nullam nec mi et neque pharetra
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 sollicitudin. Praesent imperdiet mi nec
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 ante. Donec ullamcorper, felis non sodales
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 commodo, lectus velit ultrices augue, a
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 dignissim nibh lectus placerat pede. Vivamus
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 nunc nunc, molestie ut, ultricies vel,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 semper in, velit. Ut porttitor. Praesent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 in sapien. Lorem ipsum dolor sit amet,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 consectetuer adipiscing elit. Duis fringilla
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 tristique neque. Sed interdum libero ut
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 metus. Pellentesque placerat. Nam rutrum
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 augue a leo. Morbi sed elit sit amet ante
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 lobortis sollicitudin. Praesent blandit
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 blandit mauris. Praesent lectus tellus,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 aliquet aliquam, luctus a, egestas a, turpis.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 106--107
 \T1/cmtt/m/n/7 Mauris lacinia lorem sit amet ipsum. Nunc
  []
+
+[2]
 
 [3]
 
@@ -878,13 +901,13 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.69 \begin{tabular}{1 | c c}
-                             
+l.114 \begin{tabular}{1 | c c}
+                              
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 ! Misplaced alignment tab character &.
-l.105 Variable &
+l.150 Variable &
                  Estimate & Std. Error & t value & Pr(>|t|) \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -894,7 +917,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.105 Variable & Estimate &
+l.150 Variable & Estimate &
                             Std. Error & t value & Pr(>|t|) \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -904,7 +927,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.105 Variable & Estimate & Std. Error &
+l.150 Variable & Estimate & Std. Error &
                                          t value & Pr(>|t|) \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -914,7 +937,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.105 Variable & Estimate & Std. Error & t value &
+l.150 Variable & Estimate & Std. Error & t value &
                                                    Pr(>|t|) \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -924,7 +947,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.107 (Intercept) &
+l.152 (Intercept) &
                      1.6571639 & 0.25594569 &  6.474670 & 1.400102e-09 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -934,7 +957,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.107 (Intercept) &  1.6571639 &
+l.152 (Intercept) &  1.6571639 &
                                  0.25594569 &  6.474670 & 1.400102e-09 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -944,7 +967,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.107 (Intercept) &  1.6571639 & 0.25594569 &
+l.152 (Intercept) &  1.6571639 & 0.25594569 &
                                                6.474670 & 1.400102e-09 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -954,7 +977,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.107 ...) &  1.6571639 & 0.25594569 &  6.474670 &
+l.152 ...) &  1.6571639 & 0.25594569 &  6.474670 &
                                                    1.400102e-09 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -964,7 +987,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.108 Sepal.Length &
+l.153 Sepal.Length &
                       0.3777734 & 0.06556897 &  5.761466 & 4.867516e-08 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -974,7 +997,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.108 Sepal.Length &  0.3777734 &
+l.153 Sepal.Length &  0.3777734 &
                                   0.06556897 &  5.761466 & 4.867516e-08 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -984,7 +1007,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.108 Sepal.Length &  0.3777734 & 0.06556897 &
+l.153 Sepal.Length &  0.3777734 & 0.06556897 &
                                                 5.761466 & 4.867516e-08 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -994,7 +1017,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.108 ...h &  0.3777734 & 0.06556897 &  5.761466 &
+l.153 ...h &  0.3777734 & 0.06556897 &  5.761466 &
                                                    4.867516e-08 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1004,7 +1027,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.109 Petal.Length &
+l.154 Petal.Length &
                      -0.1875666 & 0.08349289 & -2.246498 & 2.619373e-02 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1014,7 +1037,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.109 Petal.Length & -0.1875666 &
+l.154 Petal.Length & -0.1875666 &
                                   0.08349289 & -2.246498 & 2.619373e-02 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1024,7 +1047,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.109 Petal.Length & -0.1875666 & 0.08349289 &
+l.154 Petal.Length & -0.1875666 & 0.08349289 &
                                                -2.246498 & 2.619373e-02 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1034,7 +1057,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.109 ...h & -0.1875666 & 0.08349289 & -2.246498 &
+l.154 ...h & -0.1875666 & 0.08349289 & -2.246498 &
                                                    2.619373e-02 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1044,7 +1067,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.110 Petal.Width &
+l.155 Petal.Width &
                      0.6257105 & 0.12337631 &  5.071561 & 1.195649e-06 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1054,7 +1077,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.110 Petal.Width &  0.6257105 &
+l.155 Petal.Width &  0.6257105 &
                                  0.12337631 &  5.071561 & 1.195649e-06 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1064,7 +1087,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.110 Petal.Width &  0.6257105 & 0.12337631 &
+l.155 Petal.Width &  0.6257105 & 0.12337631 &
                                                5.071561 & 1.195649e-06 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1074,7 +1097,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.110 ...h &  0.6257105 & 0.12337631 &  5.071561 &
+l.155 ...h &  0.6257105 & 0.12337631 &  5.071561 &
                                                    1.195649e-06 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1084,7 +1107,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.111 Speciesversicolor &
+l.156 Speciesversicolor &
                           -1.1602853 & 0.19329450 & -6.002681 & 1.503304e-08 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1094,7 +1117,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.111 Speciesversicolor & -1.1602853 &
+l.156 Speciesversicolor & -1.1602853 &
                                        0.19329450 & -6.002681 & 1.503304e-08 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1104,7 +1127,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.111 ...iesversicolor & -1.1602853 & 0.19329450 &
+l.156 ...iesversicolor & -1.1602853 & 0.19329450 &
                                                    -6.002681 & 1.503304e-08 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1114,7 +1137,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.111 ...r & -1.1602853 & 0.19329450 & -6.002681 &
+l.156 ...r & -1.1602853 & 0.19329450 & -6.002681 &
                                                    1.503304e-08 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1124,7 +1147,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.112 Speciesvirginica &
+l.157 Speciesvirginica &
                          -1.3982549 & 0.27714618 & -5.045189 & 1.344532e-06 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1134,7 +1157,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.112 Speciesvirginica & -1.3982549 &
+l.157 Speciesvirginica & -1.3982549 &
                                       0.27714618 & -5.045189 & 1.344532e-06 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1144,7 +1167,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.112 Speciesvirginica & -1.3982549 & 0.27714618 &
+l.157 Speciesvirginica & -1.3982549 & 0.27714618 &
                                                    -5.045189 & 1.344532e-06 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1154,7 +1177,7 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.112 ...a & -1.3982549 & 0.27714618 & -5.045189 &
+l.157 ...a & -1.3982549 & 0.27714618 & -5.045189 &
                                                    1.344532e-06 \
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1164,68 +1187,70 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 
-Overfull \hbox (42.659pt too wide) in paragraph at lines 100--116
+Overfull \hbox (42.659pt too wide) in paragraph at lines 145--161
 []\T1/cmtt/m/n/10 begintable[h!] centering captionResumen del Modelo begintabular@lrrrr@
  []
 
 
-Overfull \hbox (6.66412pt too wide) in paragraph at lines 100--116
+Overfull \hbox (6.66412pt too wide) in paragraph at lines 145--161
 \T1/cmtt/m/n/10 toprule Variable  Estimate  Std. Error  t value  Pr(>|t|)  midrule
  []
 
 
-Overfull \hbox (32.90771pt too wide) in paragraph at lines 100--116
+Overfull \hbox (32.90771pt too wide) in paragraph at lines 145--161
 \T1/cmtt/m/n/10 (Intercept)  1.6571639  0.25594569  6.474670  1.400102e-09  Sepal.Length
  []
 
 
-Overfull \hbox (27.659pt too wide) in paragraph at lines 100--116
+Overfull \hbox (27.659pt too wide) in paragraph at lines 145--161
 \T1/cmtt/m/n/10 0.3777734  0.06556897  5.761466  4.867516e-08  Petal.Length  -0.1875666
  []
 
 
-Overfull \hbox (27.659pt too wide) in paragraph at lines 100--116
+Overfull \hbox (27.659pt too wide) in paragraph at lines 145--161
 \T1/cmtt/m/n/10 0.08349289  -2.246498  2.619373e-02  Petal.Width  0.6257105  0.12337631
  []
 
 
-Overfull \hbox (53.90259pt too wide) in paragraph at lines 100--116
+Overfull \hbox (53.90259pt too wide) in paragraph at lines 145--161
 \T1/cmtt/m/n/10 5.071561  1.195649e-06  Speciesversicolor  -1.1602853  0.19329450  -6.002681
  []
 
 
-Overfull \hbox (69.64874pt too wide) in paragraph at lines 100--116
+Overfull \hbox (69.64874pt too wide) in paragraph at lines 145--161
 \T1/cmtt/m/n/10 1.503304e-08  Speciesvirginica  -1.3982549  0.27714618  -5.045189  1.344532e-06
  []
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 173.
+<Ejemplo-006.pdf, id=25, 433.62pt x 433.62pt>
+File: Ejemplo-006.pdf Graphic file (type pdf)
+<use Ejemplo-006.pdf>
+Package pdftex.def Info: Ejemplo-006.pdf  used on input line 176.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
 
 
 [4]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 128.
-<Ejemplo-005.pdf, id=29, 433.62pt x 433.62pt>
-File: Ejemplo-005.pdf Graphic file (type pdf)
-<use Ejemplo-005.pdf>
-Package pdftex.def Info: Ejemplo-005.pdf  used on input line 131.
-(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
-<Ejemplo-006.pdf, id=30, 433.62pt x 433.62pt>
-File: Ejemplo-006.pdf Graphic file (type pdf)
-<use Ejemplo-006.pdf>
-Package pdftex.def Info: Ejemplo-006.pdf  used on input line 135.
-(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
-
-
-[5 <./Ejemplo-005.pdf>]
-<Ejemplo-007.pdf, id=39, 433.62pt x 433.62pt>
+<Ejemplo-007.pdf, id=30, 433.62pt x 433.62pt>
 File: Ejemplo-007.pdf Graphic file (type pdf)
 <use Ejemplo-007.pdf>
-Package pdftex.def Info: Ejemplo-007.pdf  used on input line 139.
+Package pdftex.def Info: Ejemplo-007.pdf  used on input line 180.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
 
 
-[6 <./Ejemplo-006.pdf>]
+[5 <./Ejemplo-006.pdf>]
+<Ejemplo-008.pdf, id=39, 433.62pt x 433.62pt>
+File: Ejemplo-008.pdf Graphic file (type pdf)
+<use Ejemplo-008.pdf>
+Package pdftex.def Info: Ejemplo-008.pdf  used on input line 184.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
 
-[7 <./Ejemplo-007.pdf>] (./Ejemplo.aux)
+
+[6 <./Ejemplo-007.pdf>]
+
+[7 <./Ejemplo-008.pdf>]
+
+[8] (./Ejemplo.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
@@ -1233,21 +1258,21 @@ L3 programming layer <2024-05-27>
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 44 ({)
+### simple group (level 1) entered at line 89 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 2816 strings out of 475543
- 49057 string characters out of 5775889
+ 2886 strings out of 475543
+ 50173 string characters out of 5775889
  1935908 words of memory out of 5000000
- 25418 multiletter control sequences out of 15000+600000
+ 25484 multiletter control sequences out of 15000+600000
  568677 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,8n,79p,212b,313s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.525pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt2488.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecst1000.600pk><c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
-Output written on Ejemplo.pdf (7 pages, 363120 bytes).
+ 72i,8n,79p,428b,300s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecst1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.525pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt2488.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecit1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk><c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
+Output written on Ejemplo.pdf (8 pages, 376367 bytes).
 PDF statistics:
- 468 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
+ 512 PDF objects out of 1000 (max. 8388607)
+ 82 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  20 words of extra memory for PDF output out of 10000 (max. 10000000)
 
