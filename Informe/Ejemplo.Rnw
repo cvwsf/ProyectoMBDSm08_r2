@@ -1,20 +1,27 @@
 \documentclass{article}
 \usepackage{multicol}
+\usepackage{booktabs} 
+\usepackage{blindtext}
 
 \renewcommand{\refname}{Referencias}
-\renewcommand{\table}{Tabla}
+\renewcommand{\tablename}{Tabla}
 
 \title{Ejemplo de Documento Sweave}
 \author{Carlos Schmidt}
 \date{\Sexpr{Sys.Date()}}
 
-
-
-
-
-
 \begin{document}
 \SweaveOpts{concordance=TRUE}
+
+
+<<>>=
+# Instalar y cargar el paquete tinytex si no está cargado
+if (!requireNamespace("tinytex", quietly = TRUE)) {
+  install.packages("tinytex")
+}
+library(tinytex)
+@
+
 
 \maketitle
 
@@ -28,19 +35,15 @@
 \end{enumerate}
 
 
-<<>>=
-if(!require(tinytex)){
-  install.packages('tinytex')
-  library(tinytex)
-  
-}
+<<echo=FALSE>>=
+#Cargar la base de datos en el entorno
+df_filtered <- read.csv("df_filtered.csv")
 @
 
 
-<<>>=
-# Para instalar otros paquetes
-tinytex::tlmgr_install('blindtext')
-@
+Ejemplo de código de R ejecutable en fragmento de texto
+La base de datos \texttt{df_filtered} tiene \emph{\Sexpr{nrow(df_filtered)}} observaciones.
+
 
 \begin{multicols}{2}
 [
@@ -79,12 +82,30 @@ Individuo 4 & g & h \\
 
 
 \subsection{Tablas generadas desde R}
-<<results=tex>>=
-# El encabezamiento de arriba sirve para tener la tabla sin el código que el sistema genera para generarla
+<<echo=FALSE, results=tex>>=
+# Generar el resumen del modelo
 data(iris)
 mod <- lm(Sepal.Width ~ ., data=iris)
-xtable::xtable(summary(mod))
+summary_mod <- summary(mod)
+
+# Extraer las estadísticas del resumen del modelo
+coefficients <- as.data.frame(summary_mod$coefficients)
+coefficients <- cbind(Variable = rownames(coefficients), coefficients)
+colnames(coefficients) <- c("Variable", "Estimate", "Std. Error", "t value", "Pr(>|t|)")
+
+# Crear el código LaTeX para la tabla
+latex_table <- paste0(
+  "\\begin{table}[h!]\n\\centering\n\\caption{Resumen del Modelo}\n\\begin{tabular}{@{}lrrrr@{}}\n\\toprule\n",
+  paste(colnames(coefficients), collapse=" & "), " \\\\\n\\midrule\n",
+  paste(apply(coefficients, 1, function(row) paste(row, collapse=" & ")), collapse=" \\\\\n"), " \\\\\n\\bottomrule\n",
+  "\\end{tabular}\n\\end{table}\n"
+)
+
+cat(latex_table)
 @
+
+\Sexpr{latex_table}
+
 
 
 <<eval=FALSE>>=
