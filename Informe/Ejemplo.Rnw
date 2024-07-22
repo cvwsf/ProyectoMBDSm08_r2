@@ -23,7 +23,6 @@
     \item ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función de la edad de los sujetos?
     \item ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del nivel educativo de los sujetos?
     \item ¿Cuál es la distribución de los niveles de las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en los países de Europa occidental?
-    \item ¿Cuál es la motivación principal de entre las tres contempladas (extrínseca, intrínseca y prosocial) en los países de Europa occidental?
 \end{enumerate}
 
 
@@ -41,7 +40,7 @@ df_filtered <- read.csv("df_filtered.csv")
 @
 
 
-\section{Pregunta 1: ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del sexo de los sujetos?
+\section{Pregunta: ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del sexo de los sujetos?
 }
 
 En esta sección, comentamos el resultado de un t-test realizado para comparar las medias de la motivación intrínseca, extrínseca y prosocial por género.
@@ -133,47 +132,8 @@ ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
 @
 
 
-\documentclass{article}
-\usepackage{multicol}
-\usepackage{booktabs} 
-\usepackage{blindtext}
-\usepackage{float}  
 
-\renewcommand{\refname}{Referencias}
-\renewcommand{\tablename}{Tabla}
-
-\title{Ejemplo de Documento Sweave}
-\author{Carlos Schmidt}
-\date{\Sexpr{Sys.Date()}}
-
-\begin{document}
-\SweaveOpts{concordance=TRUE}
-
-\maketitle
-
-\textbf{Preguntas a las que este informe da respuesta:}
-\begin{enumerate}
-    \item ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del sexo de los sujetos?
-    \item ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función de la edad de los sujetos?
-    \item ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del nivel educativo de los sujetos?
-    \item ¿Cuál es la distribución de los niveles de las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en los países de Europa occidental?
-    \item ¿Cuál es la motivación principal de entre las tres contempladas (extrínseca, intrínseca y prosocial) en los países de Europa occidental?
-\end{enumerate}
-
-<<echo=FALSE>>=
-# Instalar y cargar el paquete tinytex si no está cargado
-if (!requireNamespace("tinytex", quietly = TRUE)) {
-  install.packages("tinytex")
-}
-library(tinytex)
-@
-
-<<echo=FALSE>>=
-# Cargar la base de datos en el entorno
-df_filtered <- read.csv("df_filtered.csv")
-@
-
-\section{Pregunta 2: ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función de la edad de los sujetos?}
+\section{Pregunta: ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función de la edad de los sujetos?}
 
 En esta sección, realizaremos ANOVAs para comparar las medias de la motivación intrínseca, extrínseca y prosocial por categorías de edad.
 
@@ -221,7 +181,6 @@ Los resultados de los ANOVAs indican que las diferencias entre las medias de la 
 \end{table}
 
 
-
 \subsection{Gráfico de motivaciones por edad}
 <<echo=FALSE, fig=TRUE, fig.cap="Comparación de Motivaciones por Categoría de Edad", fig.width=10, fig.height=6>>=
 # Crear categorías de edad y convertir a factor
@@ -263,8 +222,7 @@ ggplot(df_long_age_motivation_summary, aes(x = motivation, y = mean_value, fill 
 
 
 
-
-\section{Pregunta 3: ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del nivel educativo de los sujetos?}
+\section{Pregunta: ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del nivel educativo de los sujetos?}
 
 En esta sección, realizamos ANOVAs para comparar las medias de la motivación intrínseca, extrínseca y prosocial por nivel educativo.
 
@@ -361,9 +319,10 @@ ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fi
 
 
 
+\section {Pregunta: ¿Cuál es la distribución de los niveles de las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en los países de Europa occidental?}
 
-
-
+En esta sección, presentamos la respuesta mediante una tabla.
+Como se puede observar, todos los países menos Italia muestran la motivación extrínseca como el tipo de motivación de media más alta. EN el caso de Italia, la motivación de mayor media es la intrínseca.
 
 \begin{table}
 
@@ -371,7 +330,7 @@ ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fi
 \centering
 \begin{tabular}[t]{lrrr}
 \toprule
-cntry & mean\_motprosoc & mean\_motextr & mean\_motintr\\
+cntry & mean\_Prosocial & mean\_Extrínseca & mean\_Intrínseca\\
 \midrule
 AT & 1.83 & 3.30 & 3.02\\
 BE & 1.93 & 3.42 & 2.94\\
@@ -393,6 +352,8 @@ SE & 1.98 & 4.04 & 3.08\\
 \bottomrule
 \end{tabular}
 \end{table}
+
+
 
 
 
