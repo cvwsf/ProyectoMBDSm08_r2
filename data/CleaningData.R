@@ -28,11 +28,13 @@ print(variable_types)
 # 2. Eliminación de sujetos con al menos un valor faltante.
 # 3. Detección de outliers.
 # 4. Inversión de la variable 'happy'
-# 5. Variable eisced: exclusión de sus valores 0 y 55, agrupación de categorías y conversión en factor.
-# 6. Descarte de las variables no consideradas relevantes para la tare y reordenación de columnas.
+# 5. Variable eisced: exclusión de sus valores 0 y 55, agrupación de categorías y conversión en factor
+# 6. Descarte de las variables no consideradas relevantes para la tarea y reordenación de columnas.
 # 7. AFC para AGRUPACIÓN de variables en los 3 tipos de motivación teorizados en la literatura pertinente e inclusión en la BD.
 # 8. Identificación de los sujetos con puntuaciones superiores en cada tipo de motivación e inclusión en la BD como nuevas variables.
-# 9. Creación del archivo depurado
+# 9. Variable agea: agrupación en categoría e inclusión como nuieva variable.
+# 10. Creación del archivo depurado.
+
 
 
 ##### 1. Conversión de las variables gndr, bthcld y atncrse a categórica/factor (están como numéricas)
@@ -432,9 +434,22 @@ df_filtered <- df_filtered %>%
 # Verificar la estructura de la base de datos filtrada para asegurarnos de que las nuevas columnas se hayan añadido
 str(df_filtered)
 
+##### 9. Variable agea: agrupación en categoría e inclusión como nuieva variable.
 
+# Crear categorías de edad y convertir a factor
+df_filtered <- df_filtered %>%
+  mutate(age_category = cut(agea, 
+                            breaks = c(15, 20, 30, 40, 50, 60, 70, 80, Inf), 
+                            labels = c("15-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81+"),
+                            right = FALSE),
+         age_category = factor(age_category, levels = c("15-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81+")))
 
-##### 9. Guardar el DataFrame depurado en un nuevo archivo CSV
+# Verificar las nuevas categorías de edad en la base de datos
+head(df_filtered)
+str(df_filtered)
+summary(df_filtered$age_category)
+
+##### 10. Guardar el DataFrame depurado en un nuevo archivo CSV
 write_csv(df_filtered, "df_filtered.csv")
 
 
@@ -450,5 +465,6 @@ write_csv(df_filtered, "df_filtered.csv")
 # 6. Descarte de las variables no consideradas relevantes para la tarea y reordenación de columnas.
 # 7. AFC para AGRUPACIÓN de variables en los 3 tipos de motivación teorizados en la literatura pertinente e inclusión en la BD.
 # 8. Identificación de los sujetos con puntuaciones superiores en cada tipo de motivación e inclusión en la BD como nuevas variables.
-# 9. Creación del archivo depurado
+# 9. Variable agea: agrupación en categoría e inclusión como nuieva variable.
+# 10. Creación del archivo depurado.
 
