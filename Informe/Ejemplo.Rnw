@@ -44,7 +44,7 @@ df_filtered <- read.csv("df_filtered.csv")
 \section{Pregunta 1: ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del sexo de los sujetos?
 }
 
-En esta sección, realizaremos un t-test para comparar las medias de la motivación intrínseca, extrínseca y prosocial por género.
+En esta sección, comentamos el resultado de un t-test realizado para comparar las medias de la motivación intrínseca, extrínseca y prosocial por género.
 
 <<echo=FALSE, results=hide>>=
 # Realizar pruebas t para cada motivación
@@ -93,111 +93,6 @@ Los resultados del t-test indican que hay diferencias estadísticamente signific
 \end{table}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Ejemplo de código de R ejecutable en fragmento de texto
-La base de datos \texttt{df_filtered} tiene \emph{\Sexpr{nrow(df_filtered)}} observaciones.
-
-
-\begin{multicols}{2}
-[
-\section{Texto con formato}
-Algún texto aleatorio
-]
-\noindent \underline{Cursiva}\\  \emph{\blindtext}   \\   \underline{Typewritter}  \\   \texttt{\blindtext}
-\end{multicols}
-
-
-\begin{multicols}{2}
-[
-\subsection{Tamaño de fuente}
-Modificando tamaño de fuente con palabras reservadas en \LaTex
-]
-{\Huge \blindtext}   {\scriptsize \blindtext}
-\end{multicols}
-
-
-\section{Tablas en LaTex}
-\subsection{Tablas generadas desde Latex}
-\begin{table}[h!]
-\caption{Esto es un ejemplo de una tabla simple en Latex.}
-\begin{tabular}{1 | c c}
-\hline
-\bf{Observación} & \bf{Var1} & \bf{Var2} \\
-\hline
-Individuo 1 & a & b \\
-Individuo 2 & c & d \\
-Individuo 3 & e & f \\
-Individuo 4 & g & h \\
-\hline
-\end{tabular}
-\end{table}
-
-
-
-\subsection{Tablas generadas desde R}
-<<echo=FALSE, results=tex>>=
-# Generar el resumen del modelo
-data(iris)
-mod <- lm(Sepal.Width ~ ., data=iris)
-summary_mod <- summary(mod)
-
-# Extraer las estadísticas del resumen del modelo
-coefficients <- as.data.frame(summary_mod$coefficients)
-coefficients <- cbind(Variable = rownames(coefficients), coefficients)
-colnames(coefficients) <- c("Variable", "Estimate", "Std. Error", "t value", "Pr(>|t|)")
-
-# Crear el código LaTeX para la tabla
-latex_table <- paste0(
-  "\\begin{table}[h!]\n\\centering\n\\caption{Resumen del Modelo}\n\\begin{tabular}{@{}lrrrr@{}}\n\\toprule\n",
-  paste(colnames(coefficients), collapse=" & "), " \\\\\n\\midrule\n",
-  paste(apply(coefficients, 1, function(row) paste(row, collapse=" & ")), collapse=" \\\\\n"), " \\\\\n\\bottomrule\n",
-  "\\end{tabular}\n\\end{table}\n"
-)
-
-cat(latex_table)
-@
-
-\Sexpr{latex_table}
-
-
-
-<<eval=FALSE>>=
-# Para establecer globalmente tamaño de gráficos
-knitr::opts_chunk$set(echo = FALSE, fig.height = 10, fig.width = 10)
-@
-
-
-\section{Gráficos en \LaTeX}
 \subsection{Gráfico de motivaciones por sexo}
 
 <<echo=FALSE, fig=TRUE, fig.cap="Comparación de Motivaciones por Sexo en Europa occidental, fig.width=10, fig.height=6">>=
@@ -236,6 +131,95 @@ ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
   scale_y_continuous(labels = abs) +  # Mostrar valores absolutos en el eje y
   coord_flip()  # Girar el gráfico para que las barras sean horizontales
 @
+
+
+\documentclass{article}
+\usepackage{multicol}
+\usepackage{booktabs} 
+\usepackage{blindtext}
+\usepackage{float}  
+
+\renewcommand{\refname}{Referencias}
+\renewcommand{\tablename}{Tabla}
+
+\title{Ejemplo de Documento Sweave}
+\author{Carlos Schmidt}
+\date{\Sexpr{Sys.Date()}}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+
+\textbf{Preguntas a las que este informe da respuesta:}
+\begin{enumerate}
+    \item ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del sexo de los sujetos?
+    \item ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función de la edad de los sujetos?
+    \item ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del nivel educativo de los sujetos?
+    \item ¿Cuál es la distribución de los niveles de las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en los países de Europa occidental?
+    \item ¿Cuál es la motivación principal de entre las tres contempladas (extrínseca, intrínseca y prosocial) en los países de Europa occidental?
+\end{enumerate}
+
+<<echo=FALSE>>=
+# Instalar y cargar el paquete tinytex si no está cargado
+if (!requireNamespace("tinytex", quietly = TRUE)) {
+  install.packages("tinytex")
+}
+library(tinytex)
+@
+
+<<echo=FALSE>>=
+# Cargar la base de datos en el entorno
+df_filtered <- read.csv("df_filtered.csv")
+@
+
+\section{Pregunta 2: ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función de la edad de los sujetos?}
+
+En esta sección, realizaremos ANOVAs para comparar las medias de la motivación intrínseca, extrínseca y prosocial por categorías de edad.
+
+<<echo=FALSE, results=hide>>=
+# Realizar ANOVAs para motivaciones según `age_category`
+library(dplyr)
+library(tidyr)
+
+# Variables de interés
+motivation_vars <- c("motprosoc", "motextr", "motintr")
+
+# Realizar ANOVAs para cada motivación según `age_category`
+anova_results_motivation_age <- lapply(motivation_vars, function(var) {
+  aov_result <- aov(df_filtered[[var]] ~ df_filtered$age_category)
+  summary(aov_result)
+})
+
+# Extraer resultados de ANOVAs
+motprosoc_anova_age <- anova_results_motivation_age[[1]]
+motextr_anova_age <- anova_results_motivation_age[[2]]
+motintr_anova_age <- anova_results_motivation_age[[3]]
+
+motprosoc_f_value_age <- motprosoc_anova_age[[1]]["df_filtered$age_category", "F value"]
+motprosoc_p_value_age <- motprosoc_anova_age[[1]]["df_filtered$age_category", "Pr(>F)"]
+motextr_f_value_age <- motextr_anova_age[[1]]["df_filtered$age_category", "F value"]
+motextr_p_value_age <- motextr_anova_age[[1]]["df_filtered$age_category", "Pr(>F)"]
+motintr_f_value_age <- motintr_anova_age[[1]]["df_filtered$age_category", "F value"]
+motintr_p_value_age <- motintr_anova_age[[1]]["df_filtered$age_category", "Pr(>F)"]
+@
+
+Los resultados de los ANOVAs indican que las diferencias entre las medias de la motivación prosocial según las categorías de edad son significativas (F(7, 25819) = \Sexpr{round(motprosoc_f_value_age, 3)}, p = \Sexpr{round(motprosoc_p_value_age, 4)}). Indican que las diferencias entre las medias de la motivación extrínseca según las categorías de edad son significativas (F(7, 25819) = \Sexpr{round(motextr_f_value_age, 1)}, p < \Sexpr{formatC(motextr_p_value_age, format = "e", digits = 2)})., e indican también que las diferencias entre las medias de la motivación intrínseca según las categorías de edad son asimismo significativas (F(7, 25819) = \Sexpr{round(motintr_f_value_age, 1)}, p < \Sexpr{formatC(motintr_p_value_age, format = "e", digits = 2)}).
+
+\begin{table}[h!]
+\centering
+\caption{Resultados del ANOVA para cada motivación por categoría de edad}
+\begin{tabular}{lcc}
+  \toprule
+  \textbf{Motivación} & \textbf{F-valor} & \textbf{p-valor} \\
+  \midrule
+  Motivación Prosocial & \Sexpr{round(motprosoc_f_value_age, 3)} & \Sexpr{round(motprosoc_p_value_age, 4)} \\
+  Motivación Extrínseca & \Sexpr{round(motextr_f_value_age, 1)} & \Sexpr{formatC(motextr_p_value_age, format = "e", digits = 2)} \\
+  Motivación Intrínseca & \Sexpr{round(motintr_f_value_age, 1)} & \Sexpr{formatC(motintr_p_value_age, format = "e", digits = 2)} \\
+  \bottomrule
+\end{tabular}
+\end{table}
+
 
 
 \subsection{Gráfico de motivaciones por edad}
@@ -277,6 +261,55 @@ ggplot(df_long_age_motivation_summary, aes(x = motivation, y = mean_value, fill 
   theme_minimal()
 @
 
+
+
+
+\section{Pregunta 3: ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del nivel educativo de los sujetos?}
+
+En esta sección, realizamos ANOVAs para comparar las medias de la motivación intrínseca, extrínseca y prosocial por nivel educativo.
+
+<<echo=FALSE, results=hide>>=
+# Realizar ANOVAs para cada motivación según `eisced_grouped`
+library(dplyr)
+library(tidyr)
+
+# Variables de interés
+motivation_vars <- c("motprosoc", "motextr", "motintr")
+
+# Realizar ANOVAs para cada motivación según `eisced_grouped`
+anova_results_motivation <- lapply(motivation_vars, function(var) {
+  anova_result <- aov(as.formula(paste(var, "~ eisced_grouped")), data = df_filtered)
+  summary(anova_result)
+})
+
+# Extraer resultados de ANOVAs
+motprosoc_anova <- anova_results_motivation[[1]]
+motextr_anova <- anova_results_motivation[[2]]
+motintr_anova <- anova_results_motivation[[3]]
+
+motprosoc_f_value <- motprosoc_anova[[1]]["eisced_grouped", "F value"]
+motprosoc_p_value <- motprosoc_anova[[1]]["eisced_grouped", "Pr(>F)"]
+motextr_f_value <- motextr_anova[[1]]["eisced_grouped", "F value"]
+motextr_p_value <- motextr_anova[[1]]["eisced_grouped", "Pr(>F)"]
+motintr_f_value <- motintr_anova[[1]]["eisced_grouped", "F value"]
+motintr_p_value <- motintr_anova[[1]]["eisced_grouped", "Pr(>F)"]
+@
+
+Los resultados de los ANOVAs indican que hay una diferencia significativa en la motivación prosocial entre los diferentes niveles educativos (F(3, 25823) = \Sexpr{round(motprosoc_f_value, 2)}, p < \Sexpr{formatC(motprosoc_p_value, format = "e", digits = 2)}). Indican que hay diferencias significativas entre los niveles educativos en motivación extrínseca (F(3, 25823) = \Sexpr{round(motextr_f_value, 2)}, p < \Sexpr{formatC(motextr_p_value, format = "e", digits = 2)}) y, asimismo, que hay una diferencia significativa entre los niveles educativos en motivación intrínseca (F(3, 25823) = \Sexpr{round(motintr_f_value, 2)}, p < \Sexpr{formatC(motintr_p_value, format = "e", digits = 2)}).
+
+\begin{table}[h!]
+\centering
+\caption{Resultados del ANOVA para cada motivación por nivel educativo}
+\begin{tabular}{lcc}
+  \toprule
+  \textbf{Motivación} & \textbf{F-valor} & \textbf{p-valor} \\
+  \midrule
+  Motivación Prosocial & \Sexpr{round(motprosoc_f_value, 2)} & \Sexpr{formatC(motprosoc_p_value, format = "e", digits = 2)} \\
+  Motivación Extrínseca & \Sexpr{round(motextr_f_value, 2)} & \Sexpr{formatC(motextr_p_value, format = "e", digits = 2)} \\
+  Motivación Intrínseca & \Sexpr{round(motintr_f_value, 2)} & \Sexpr{formatC(motintr_p_value, format = "e", digits = 2)} \\
+  \bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Gráfico de motivaciones por nivel educativo}
 <<echo=FALSE, fig=TRUE, fig.cap="Comparación de Motivaciones por Nivel Educativo", fig.width=10, fig.height=6>>=
@@ -325,6 +358,11 @@ ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fi
   scale_fill_manual(values = color_palette) +  # Usar una paleta de colores secuencial definida manualmente
   theme_minimal()
 @
+
+
+
+
+
 
 
 \begin{table}
