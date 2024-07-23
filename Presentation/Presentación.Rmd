@@ -78,6 +78,39 @@ ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
 ```
 
 
+## Resultados del t-test por sexo para cada motivación
+
+```{r, echo=FALSE}
+# Realizar pruebas t para cada motivación
+t_test_results <- df_filtered %>%
+  select(gndr, motprosoc, motextr, motintr) %>%
+  pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value") %>%
+  group_by(motivation) %>%
+  summarise(
+    t_test = list(t.test(value ~ gndr)),
+    p_value = t_test[[1]]$p.value,
+    mean_male = t_test[[1]]$estimate[1],
+    mean_female = t_test[[1]]$estimate[2]
+  )
+
+# Convertir a datos de lista para usar en el texto
+motprosoc_p_value <- t_test_results %>% filter(motivation == "motprosoc") %>% pull(p_value)
+motprosoc_mean_male <- t_test_results %>% filter(motivation == "motprosoc") %>% pull(mean_male)
+motprosoc_mean_female <- t_test_results %>% filter(motivation == "motprosoc") %>% pull(mean_female)
+
+motextr_p_value <- t_test_results %>% filter(motivation == "motextr") %>% pull(p_value)
+motextr_mean_male <- t_test_results %>% filter(motivation == "motextr") %>% pull(mean_male)
+motextr_mean_female <- t_test_results %>% filter(motivation == "motextr") %>% pull(mean_female)
+
+motintr_p_value <- t_test_results %>% filter(motivation == "motintr") %>% pull(p_value)
+motintr_mean_male <- t_test_results %>% filter(motivation == "motintr") %>% pull(mean_male)
+motintr_mean_female <- t_test_results %>% filter(motivation == "motintr") %>% pull(mean_female)
+```
+
+Los resultados del t-test indican que hay diferencias estadísticamente significativas entre las medias de hombres y mujeres en las tres motivaciones contempladas. 
+
+En concreto, las medias de las mujeres en motivación extrínseca (`r round(motextr_mean_female, 2)`) y motivación intrínseca (`r round(motintr_mean_female, 2)`) son más altas que las de los hombres (`r round(motextr_mean_male, 2)` y `r round(motintr_mean_male, 2)`), y la de los hombres lo es en motivación prosocial (`r round(motprosoc_mean_male, 2)` frente a `r round(motprosoc_mean_female, 2)`).
+
 
 ## Gráfico de diferencias en motivaciones por edad
 ```{r echo=FALSE}
