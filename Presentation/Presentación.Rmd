@@ -1,0 +1,127 @@
+---
+title: "Presentación"
+author: "Carlos Schmidt"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(DT)
+```
+
+## Preguntas a las que este informe da respuesta
+
+1. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del sexo de los sujetos?
+2. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función de la edad de los sujetos?
+3. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del nivel educativo de los sujetos?
+4. ¿Cuál es la distribución de los niveles de las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en los países de Europa occidental?
+---
+
+## Gráfico de diferencias en motivaciones por sexo
+```{r, echo = FALSE}
+df_filtered <- read.csv("df_filtered.csv")
+
+# Ajustar los nombres de los países
+df_filtered <- df_filtered %>%
+  mutate(
+    cntry = recode(cntry, 
+                   GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                   ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                   IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                   FI = "Finland", SE = "Sweden", NO = "Norway")
+  )
+
+# Crear una base de datos larga para ggplot
+df_long_all_countries <- df_filtered %>%
+  select(cntry, gndr, motprosoc, motextr, motintr) %>%
+  pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value")
+
+# Crear una columna para separar las barras hacia la izquierda o la derecha
+df_long_all_countries <- df_long_all_countries %>%
+  mutate(value = ifelse(gndr == "Hombre", -value, value))
+
+# Crear el gráfico de mariposa
+ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Comparación de Motivaciones por Sexo en Europa occidental",
+       x = "Motivación",
+       y = "Valor de Motivación",
+       fill = "Sexo") +
+  theme_minimal() +
+  scale_y_continuous(labels = abs) +  # Mostrar valores absolutos en el eje y
+  coord_flip()  # Girar el gráfico para que las barras sean horizontales
+
+```
+---
+
+## Gráfico de diferencias en motivaciones por edad
+```{r echo=FALSE}
+# Crear una base de datos larga para ggplot para motivaciones según `age_category`
+df_long_age_motivation <- df_filtered %>%
+  select(age_category, motprosoc, motextr, motintr) %>%
+  pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value")
+
+# Calcular medias por categoría de edad y motivación
+df_long_age_motivation_summary <- df_long_age_motivation %>%
+  group_by(age_category, motivation) %>%
+  summarise(mean_value = mean(value, na.rm = TRUE), .groups = 'drop')  # Añadir .groups = 'drop' para suprimir el mensaje
+
+# Crear el gráfico con tres barras de motivaciones para cada segmento de edad
+ggplot(df_long_age_motivation_summary, aes(x = motivation, y = mean_value, fill = age_category)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Media de Motivaciones por Categoría de Edad",
+       x = "Motivación",
+       y = "Media de Motivación",
+       fill = "Categoría de Edad") +
+  scale_fill_brewer(palette = "Spectral") +  # Usar una paleta de colores secuencial
+  theme_minimal()
+
+```
+---
+
+## Gráfico de diferencias en motivaciones por nivel educativo
+```{r, echo=FALSE}
+# Filtrar la base de datos para excluir los valores 0 y 55 en eisced y agrupar categorías
+df_filtered_eisced <- df_filtered %>%
+  mutate(eisced_grouped = case_when(
+    eisced %in% 1:4 ~ "ISCED 1-4",
+    eisced == 5 ~ "ISCED 5",
+    eisced == 6 ~ "ISCED 6",
+    eisced == 7 ~ "ISCED 7"
+  )) %>%
+  mutate(eisced_grouped = factor(eisced_grouped, levels = c("ISCED 1-4", "ISCED 5", "ISCED 6", "ISCED 7")))
+
+# Crear una base de datos larga para ggplot para motivaciones según `eisced_grouped`
+df_long_eisced_motivation <- df_filtered_eisced %>%
+  select(eisced_grouped, motprosoc, motextr, motintr) %>%
+  pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value")
+
+# Calcular medias por categoría de nivel educativo y motivación
+df_long_eisced_motivation_summary <- df_long_eisced_motivation %>%
+  group_by(eisced_grouped, motivation) %>%
+  summarise(mean_value = mean(value, na.rm = TRUE), .groups = 'drop')
+
+# Definir una paleta de colores secuenciales manualmente con mayor contraste
+color_palette <- c("ISCED 1-4" = "#bdd7e7", "ISCED 5" = "#6baed6", "ISCED 6" = "#3182bd", "ISCED 7" = "#08519c")
+
+# Crear el gráfico con tres barras de motivaciones para cada nivel educativo
+ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fill = eisced_grouped)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Media de Motivaciones por Nivel Educativo",
+       x = "Motivación",
+       y = "Media de Motivación",
+       fill = "Nivel Educativo") +
+  scale_fill_manual(values = color_palette) +  # Usar una paleta de colores secuencial definida manualmente
+  theme_minimal()
+
+```
+
+
+
