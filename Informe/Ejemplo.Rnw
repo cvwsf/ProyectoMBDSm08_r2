@@ -6,7 +6,7 @@
 
 
 
-\title{Informe}
+\title{Presentación}
 \author{Carlos Schmidt}
 \date{\Sexpr{Sys.Date()}}
 

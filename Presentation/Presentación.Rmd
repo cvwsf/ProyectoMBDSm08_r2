@@ -5,6 +5,21 @@ date: "`r Sys.Date()`"
 output: ioslides_presentation
 ---
 
+
+<style>
+/* Reducir el tamaño del título de las diapositivas de nivel 2 */
+h2 {
+  font-size: 24px;
+}
+
+/* Ajustar el tamaño de la fuente de la tabla */
+table {
+  font-size: 10px;
+}
+</style>
+
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
@@ -14,6 +29,7 @@ library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
 library(DT)
+library(kableExtra)
 ```
 
 ## Preguntas a las que este informe da respuesta
@@ -22,7 +38,8 @@ library(DT)
 2. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función de la edad de los sujetos?
 3. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del nivel educativo de los sujetos?
 4. ¿Cuál es la distribución de los niveles de las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en los países de Europa occidental?
----
+
+
 
 ## Gráfico de diferencias en motivaciones por sexo
 ```{r, echo = FALSE}
@@ -59,7 +76,8 @@ ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
   coord_flip()  # Girar el gráfico para que las barras sean horizontales
 
 ```
----
+
+
 
 ## Gráfico de diferencias en motivaciones por edad
 ```{r echo=FALSE}
@@ -84,7 +102,8 @@ ggplot(df_long_age_motivation_summary, aes(x = motivation, y = mean_value, fill 
   theme_minimal()
 
 ```
----
+
+
 
 ## Gráfico de diferencias en motivaciones por nivel educativo
 ```{r, echo=FALSE}
@@ -123,5 +142,40 @@ ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fi
 
 ```
 
+## Distribución de los niveles de las motivaciones en los países de Europa occidental
+
+```{r, echo=FALSE}
+# Cargar las librerías necesarias
+library(dplyr)
+library(kableExtra)
+
+# Ajustar los nombres de los países
+df_filtered <- df_filtered %>%
+  mutate(
+    cntry = recode(cntry, 
+                   GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                   ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                   IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                   FI = "Finland", SE = "Sweden", NO = "Norway")
+  )
+
+# Calcular medias por país para cada tipo de motivación
+summary_country <- df_filtered %>%
+  group_by(cntry) %>%
+  summarise(mean_Prosocial = round(mean(motprosoc, na.rm = TRUE), 1),
+            mean_Extrínseca = round(mean(motextr, na.rm = TRUE), 1),
+            mean_Intrínseca = round(mean(motintr, na.rm = TRUE), 1))
+
+# Crear una tabla bonita con kableExtra
+summary_country %>%
+  kable("html", caption = "Media de las motivaciones por país") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+                full_width = FALSE, 
+                position = "center", 
+                font_size = 12) %>%
+  column_spec(1, bold = TRUE, border_right = TRUE) %>%
+  column_spec(2:4, background = "lightblue", color = "black")
+
+```
 
 
