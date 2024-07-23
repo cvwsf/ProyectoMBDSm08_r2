@@ -112,6 +112,7 @@ Los resultados del t-test indican que hay diferencias estadísticamente signific
 En concreto, las medias de las mujeres en motivación extrínseca (`r round(motextr_mean_female, 2)`) y motivación intrínseca (`r round(motintr_mean_female, 2)`) son más altas que las de los hombres (`r round(motextr_mean_male, 2)` y `r round(motintr_mean_male, 2)`), y la de los hombres lo es en motivación prosocial (`r round(motprosoc_mean_male, 2)` frente a `r round(motprosoc_mean_female, 2)`).
 
 
+
 ## Gráfico de diferencias en motivaciones por edad
 ```{r echo=FALSE}
 # Crear una base de datos larga para ggplot para motivaciones según `age_category`
@@ -135,6 +136,39 @@ ggplot(df_long_age_motivation_summary, aes(x = motivation, y = mean_value, fill 
   theme_minimal()
 
 ```
+
+
+## Resultados de ANOVAs por categorías de edad para cada motivación
+
+```{r, echo=FALSE}
+# Realizar ANOVAs para motivaciones según `age_category`
+motivation_vars <- c("motprosoc", "motextr", "motintr")
+
+# Realizar ANOVAs para cada motivación según `age_category`
+anova_results_motivation_age <- lapply(motivation_vars, function(var) {
+  aov_result <- aov(df_filtered[[var]] ~ df_filtered$age_category)
+  summary(aov_result)
+})
+
+# Extraer resultados de ANOVAs
+motprosoc_anova_age <- anova_results_motivation_age[[1]]
+motextr_anova_age <- anova_results_motivation_age[[2]]
+motintr_anova_age <- anova_results_motivation_age[[3]]
+
+motprosoc_f_value_age <- motprosoc_anova_age[[1]]["df_filtered$age_category", "F value"]
+motprosoc_p_value_age <- motprosoc_anova_age[[1]]["df_filtered$age_category", "Pr(>F)"]
+motextr_f_value_age <- motextr_anova_age[[1]]["df_filtered$age_category", "F value"]
+motextr_p_value_age <- motextr_anova_age[[1]]["df_filtered$age_category", "Pr(>F)"]
+motintr_f_value_age <- motintr_anova_age[[1]]["df_filtered$age_category", "F value"]
+motintr_p_value_age <- motintr_anova_age[[1]]["df_filtered$age_category", "Pr(>F)"]
+
+```
+
+Los resultados de los ANOVAs indican que las diferencias entre las medias de la motivación prosocial según las categorías de edad son significativas (F(7, 25819) = `r round(motprosoc_f_value_age, 3)`, p = `r round(motprosoc_p_value_age, 4)`). 
+
+Indican que las diferencias entre las medias de la motivación extrínseca según las categorías de edad son significativas (F(7, 25819) = `r round(motextr_f_value_age, 1)`, p < `r formatC(motextr_p_value_age, format = "e", digits = 2)`). 
+
+Indican también que las diferencias entre las medias de la motivación intrínseca según las categorías de edad son asimismo significativas (F(7, 25819) = `r round(motintr_f_value_age, 1)`, p < `r formatC(motintr_p_value_age, format = "e", digits = 2)`).
 
 
 
@@ -174,6 +208,38 @@ ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fi
   theme_minimal()
 
 ```
+
+## Resultados de ANOVAs por nivel de educación para cada motivación
+
+```{r, echo=FALSE}
+# Realizar ANOVAs para cada motivación según `eisced_grouped`
+motivation_vars <- c("motprosoc", "motextr", "motintr")
+
+# Realizar ANOVAs para cada motivación según `eisced_grouped`
+anova_results_motivation <- lapply(motivation_vars, function(var) {
+  anova_result <- aov(as.formula(paste(var, "~ eisced_grouped")), data = df_filtered)
+  summary(anova_result)
+})
+
+# Extraer resultados de ANOVAs
+motprosoc_anova <- anova_results_motivation[[1]]
+motextr_anova <- anova_results_motivation[[2]]
+motintr_anova <- anova_results_motivation[[3]]
+
+motprosoc_f_value <- motprosoc_anova[[1]]["eisced_grouped", "F value"]
+motprosoc_p_value <- motprosoc_anova[[1]]["eisced_grouped", "Pr(>F)"]
+motextr_f_value <- motextr_anova[[1]]["eisced_grouped", "F value"]
+motextr_p_value <- motextr_anova[[1]]["eisced_grouped", "Pr(>F)"]
+motintr_f_value <- motintr_anova[[1]]["eisced_grouped", "F value"]
+motintr_p_value <- motintr_anova[[1]]["eisced_grouped", "Pr(>F)"]
+
+```
+
+Los resultados de los ANOVAs indican que hay una diferencia significativa en la motivación prosocial entre los diferentes niveles educativos (F(3, 25823) = `r round(motprosoc_f_value, 2)`, p < `r formatC(motprosoc_p_value, format = "e", digits = 2)`). 
+
+Indican que hay diferencias significativas entre los niveles educativos en motivación extrínseca (F(3, 25823) = `r round(motextr_f_value, 2)`, p < `r formatC(motextr_p_value, format = "e", digits = 2)`) y, asimismo, que hay una diferencia significativa entre los niveles educativos en motivación intrínseca (F(3, 25823) = `r round(motintr_f_value, 2)`, p < `r formatC(motintr_p_value, format = "e", digits = 2)`).
+
+
 
 ## Distribución de los niveles de las motivaciones en los países de Europa occidental
 
