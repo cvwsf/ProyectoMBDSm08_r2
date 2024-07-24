@@ -1,6 +1,6 @@
 ---
-title: "CódigoR_Dashboard"
-author: "CS"
+title: "Dashboard"
+author: "Carlos Schmidt"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -551,6 +551,9 @@ datatable(summary_age,
 
 Comentarios al dashboard {data-icon="fa-table"}
 =================================================
+
+
+
 
 ```{r}
 

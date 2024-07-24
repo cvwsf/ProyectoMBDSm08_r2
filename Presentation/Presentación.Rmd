@@ -32,16 +32,25 @@ library(DT)
 library(kableExtra)
 ```
 
+## Contexto de esta presentación
+
+Esta presentación corresponde a un proyecto de Ciencia de Datos, y forma parte del contenido requerido de la segunda tarea del Módulo 8 del Máster de Behavioral Data Analysis de la Universitat de Barcelona.
+
+El objetivo principal del proyecto consiste en llevar a cabo una primera exploración de perfil motivacional de la población en Europa occidental; en concreto, atendemos a los principales criterios recogidos en la primera: sexo, franja de edad, nivel educativo y país.
+
+Los objetivos específicos se recogen a continuación en su formulación como preguntas de investigación.
+
 ## Preguntas a las que este informe da respuesta
 
 1. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del sexo de los sujetos?
 2. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función de la edad de los sujetos?
 3. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del nivel educativo de los sujetos?
-4. ¿Cuál es la distribución de los niveles de las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en los países de Europa occidental?
+4. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del  del país de los sujetos?
 
 
 
-## Gráfico de diferencias en motivaciones por sexo
+## 1. ¿Cómo varían las motivaciones en función del sexo?
+
 ```{r, echo = FALSE}
 df_filtered <- read.csv("df_filtered.csv")
 
@@ -113,7 +122,7 @@ En concreto, las medias de las mujeres en motivación extrínseca (`r round(mote
 
 
 
-## Gráfico de diferencias en motivaciones por edad
+## 2. ¿Cómo varían las motivaciones en función de la edad?
 ```{r echo=FALSE}
 # Crear una base de datos larga para ggplot para motivaciones según `age_category`
 df_long_age_motivation <- df_filtered %>%
@@ -172,7 +181,7 @@ Indican también que las diferencias entre las medias de la motivación intríns
 
 
 
-## Gráfico de diferencias en motivaciones por nivel educativo
+## 3. ¿Cómo varían las motivaciones en función del nivel educativo?
 ```{r, echo=FALSE}
 # Filtrar la base de datos para excluir los valores 0 y 55 en eisced y agrupar categorías
 df_filtered_eisced <- df_filtered %>%
@@ -241,7 +250,7 @@ Indican que hay diferencias significativas entre los niveles educativos en motiv
 
 
 
-## Distribución de los niveles de las motivaciones en los países de Europa occidental
+## 4. ¿Cómo varían las motivaciones en función del país?
 
 ```{r, echo=FALSE}
 # Cargar las librerías necesarias

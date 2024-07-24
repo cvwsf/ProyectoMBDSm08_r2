@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.22)  22 JUL 2024 18:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.7.22)  24 JUL 2024 10:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -231,42 +231,42 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 17.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 44.
+(Font)              <7> on input line 54.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 44.
-<Ejemplo-004.pdf, id=2, 433.62pt x 433.62pt>
-File: Ejemplo-004.pdf Graphic file (type pdf)
-<use Ejemplo-004.pdf>
-Package pdftex.def Info: Ejemplo-004.pdf  used on input line 58.
-(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+(Font)              <5> on input line 54.
 
 
 [1
 
 {c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Ejemplo-006.pdf, id=13, 433.62pt x 433.62pt>
-File: Ejemplo-006.pdf Graphic file (type pdf)
-<use Ejemplo-006.pdf>
-Package pdftex.def Info: Ejemplo-006.pdf  used on input line 85.
+<Ejemplo-004.pdf, id=12, 433.62pt x 433.62pt>
+File: Ejemplo-004.pdf Graphic file (type pdf)
+<use Ejemplo-004.pdf>
+Package pdftex.def Info: Ejemplo-004.pdf  used on input line 68.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
 
 
 [2 <./Ejemplo-004.pdf>]
+<Ejemplo-006.pdf, id=22, 433.62pt x 433.62pt>
+File: Ejemplo-006.pdf Graphic file (type pdf)
+<use Ejemplo-006.pdf>
+Package pdftex.def Info: Ejemplo-006.pdf  used on input line 95.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+
 
 [3 <./Ejemplo-006.pdf>]
 <Ejemplo-008.pdf, id=31, 433.62pt x 433.62pt>
 File: Ejemplo-008.pdf Graphic file (type pdf)
 <use Ejemplo-008.pdf>
-Package pdftex.def Info: Ejemplo-008.pdf  used on input line 111.
+Package pdftex.def Info: Ejemplo-008.pdf  used on input line 121.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
 
 
-[4 <./Ejemplo-008.pdf>]
+[4]
 
-[5] (./Ejemplo.aux)
+[5 <./Ejemplo-008.pdf>]
+
+[6] (./Ejemplo.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
@@ -280,11 +280,11 @@ Here is how much of TeX's memory you used:
  566195 words of font info for 52 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  72i,8n,79p,564b,273s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk>
-Output written on Ejemplo.pdf (5 pages, 292713 bytes).
+ <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> <c:/Users/carlos/AppData/Roaming/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk>
+Output written on Ejemplo.pdf (6 pages, 289741 bytes).
 PDF statistics:
- 256 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
+ 250 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  20 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -6,7 +6,7 @@
 
 
 
-\title{Presentación}
+\title{Informe}
 \author{Carlos Schmidt}
 \date{\Sexpr{Sys.Date()}}
 
@@ -15,7 +15,17 @@
 
 \maketitle
 
+\maketitle
 
+\section*{Contexto de este informe}
+
+Este informe corresponde a un proyecto de Ciencia de Datos, y forma parte del contenido requerido de la segunda tarea del Módulo 8 del Máster de Behavioral Data Analysis de la Universitat de Barcelona.
+
+\vspace{1em}
+
+El objetivo principal del proyecto consiste en llevar a cabo una primera exploración de perfil motivacional de la población en Europa occidental; en concreto, atendemos a los principales criterios recogidos en la primera: sexo, franja de edad, nivel educativo y país.
+
+\vspace{1em}
 
 \textbf{Preguntas a las que este informe da respuesta:}
 \begin{enumerate}
