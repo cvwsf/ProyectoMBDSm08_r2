@@ -470,8 +470,3 @@ Las slides "Diferencias por país" (I) y (II) recogen la misma información con 
 
 
 
-```{r}
-
-```
-
-
