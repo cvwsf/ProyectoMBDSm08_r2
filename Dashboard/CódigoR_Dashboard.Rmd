@@ -40,7 +40,7 @@ df_filtered <- df_filtered %>%
 ```
 
 
-Gráficos 1 {data-icon="fa-table"}
+Diferencias por sexo, franja de edad y nivel educativo {data-icon="fa-table"}
 =================================================
 
 Column {data-width=550}
@@ -154,7 +154,7 @@ ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fi
 
 ```
 
-Gráficos 2 {data-icon="fa-table"}
+Diferencias por país (I) {data-icon="fa-table"}
 =================================================
 
 Column {data-width=50%}
@@ -309,7 +309,7 @@ renderPlot({
 ```
 
 
-Gráficos 3 {data-icon="fa-table"}
+Diferencias por país (II) {data-icon="fa-table"}
 =================================================
 
 Column {data-width=25%}
@@ -458,6 +458,14 @@ renderPlot({
 
 Comentarios al dashboard {data-icon="fa-table"}
 =================================================
+
+Este dashboard corresponde a un proyecto de Ciencia de Datos, y forma parte del contenido requerido de la segunda tarea del Módulo 8 del Máster de Behavioral Data Analysis de la Universitat de Barcelona.
+
+El objetivo principal del proyecto consiste en llevar a cabo una primera exploración del perfil motivacional (extrínseco, intrínseco, prosocial) de la población en Europa occidental; en concreto, atendemos a los principales criterios recogidos en la primera: sexo, franja de edad, nivel educativo y país.
+
+Este dashboard recoge de forma gráfica los resultados de esa exploración.
+
+Las slides "Diferencias por país" (I) y (II) recogen la misma información con una presentación ligeramente diferente con el objetivo de que el destinatario elija, de entre estas dos opciones, la que le resulte más adecuada.
 
 
 
