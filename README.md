@@ -1,7 +1,7 @@
 ---
 title: "README"
 author: "Carlos Schmidt"
-date: "2024-07-24"
+date: "`r Sys.Date()`"
 output: 
   html_document:
     keep_md: true
