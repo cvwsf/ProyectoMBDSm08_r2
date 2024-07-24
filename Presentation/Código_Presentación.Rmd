@@ -34,7 +34,7 @@ library(kableExtra)
 
 ## Contexto de esta presentación
 
-Esta presentación corresponde a un proyecto de Ciencia de Datos, y forma parte del contenido requerido de la segunda tarea del Módulo 8 del Máster de Behavioral Data Analysis de la Universitat de Barcelona.
+Esta presentación corresponde a un proyecto de Ciencia de Datos, y forma parte del contenido requerido para la segunda tarea del Módulo 8 del Máster de Behavioral Data Analysis de la Universitat de Barcelona.
 
 El objetivo principal del proyecto consiste en llevar a cabo una primera exploración de perfil motivacional de la población en Europa occidental; en concreto, atendemos a los principales criterios recogidos en la primera: sexo, franja de edad, nivel educativo y país.
 
