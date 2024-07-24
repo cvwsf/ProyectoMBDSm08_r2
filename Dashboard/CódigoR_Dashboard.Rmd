@@ -465,7 +465,7 @@ El objetivo principal del proyecto consiste en llevar a cabo una primera explora
 
 Este dashboard recoge de forma gráfica los resultados de esa exploración.
 
-Las slides "Diferencias por país" (I) y (II) recogen la misma información con una presentación ligeramente diferente con el objetivo de que el destinatario elija, de entre estas dos opciones, la que le resulte más adecuada.
+Las slides Diferencias por país (I) y (II) recogen la misma información con una presentación ligeramente diferente con el objetivo de que el destinatario elija, de entre estas dos opciones, la que le resulte más adecuada.
 
 
 
