@@ -1,0 +1,289 @@
+---
+title: "Presentación"
+author: "Carlos Schmidt"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
+
+<style>
+/* Reducir el tamaño del título de las diapositivas de nivel 2 */
+h2 {
+  font-size: 24px;
+}
+
+/* Ajustar el tamaño de la fuente de la tabla */
+table {
+  font-size: 10px;
+}
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(DT)
+library(kableExtra)
+```
+
+## Contexto de esta presentación
+
+Esta presentación corresponde a un proyecto de Ciencia de Datos, y forma parte del contenido requerido de la segunda tarea del Módulo 8 del Máster de Behavioral Data Analysis de la Universitat de Barcelona.
+
+El objetivo principal del proyecto consiste en llevar a cabo una primera exploración de perfil motivacional de la población en Europa occidental; en concreto, atendemos a los principales criterios recogidos en la primera: sexo, franja de edad, nivel educativo y país.
+
+Los objetivos específicos se recogen a continuación en su formulación como preguntas de investigación.
+
+## Preguntas a las que este informe da respuesta
+
+1. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del sexo de los sujetos?
+2. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función de la edad de los sujetos?
+3. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del nivel educativo de los sujetos?
+4. ¿Cómo varían las tres motivaciones contempladas (extrínseca, intrínseca y prosocial) en función del  del país de los sujetos?
+
+
+
+## 1. ¿Cómo varían las motivaciones en función del sexo?
+
+```{r, echo = FALSE}
+df_filtered <- read.csv("df_filtered.csv")
+
+# Ajustar los nombres de los países
+df_filtered <- df_filtered %>%
+  mutate(
+    cntry = recode(cntry, 
+                   GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                   ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                   IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                   FI = "Finland", SE = "Sweden", NO = "Norway")
+  )
+
+# Crear una base de datos larga para ggplot
+df_long_all_countries <- df_filtered %>%
+  select(cntry, gndr, motprosoc, motextr, motintr) %>%
+  pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value")
+
+# Crear una columna para separar las barras hacia la izquierda o la derecha
+df_long_all_countries <- df_long_all_countries %>%
+  mutate(value = ifelse(gndr == "Hombre", -value, value))
+
+# Crear el gráfico de mariposa
+ggplot(df_long_all_countries, aes(x = motivation, y = value, fill = gndr)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Comparación de Motivaciones por Sexo en Europa occidental",
+       x = "Motivación",
+       y = "Valor de Motivación",
+       fill = "Sexo") +
+  theme_minimal() +
+  scale_y_continuous(labels = abs) +  # Mostrar valores absolutos en el eje y
+  coord_flip()  # Girar el gráfico para que las barras sean horizontales
+
+```
+
+
+## Resultados del t-test por sexo para cada motivación
+
+```{r, echo=FALSE}
+# Realizar pruebas t para cada motivación
+t_test_results <- df_filtered %>%
+  select(gndr, motprosoc, motextr, motintr) %>%
+  pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value") %>%
+  group_by(motivation) %>%
+  summarise(
+    t_test = list(t.test(value ~ gndr)),
+    p_value = t_test[[1]]$p.value,
+    mean_male = t_test[[1]]$estimate[1],
+    mean_female = t_test[[1]]$estimate[2]
+  )
+
+# Convertir a datos de lista para usar en el texto
+motprosoc_p_value <- t_test_results %>% filter(motivation == "motprosoc") %>% pull(p_value)
+motprosoc_mean_male <- t_test_results %>% filter(motivation == "motprosoc") %>% pull(mean_male)
+motprosoc_mean_female <- t_test_results %>% filter(motivation == "motprosoc") %>% pull(mean_female)
+
+motextr_p_value <- t_test_results %>% filter(motivation == "motextr") %>% pull(p_value)
+motextr_mean_male <- t_test_results %>% filter(motivation == "motextr") %>% pull(mean_male)
+motextr_mean_female <- t_test_results %>% filter(motivation == "motextr") %>% pull(mean_female)
+
+motintr_p_value <- t_test_results %>% filter(motivation == "motintr") %>% pull(p_value)
+motintr_mean_male <- t_test_results %>% filter(motivation == "motintr") %>% pull(mean_male)
+motintr_mean_female <- t_test_results %>% filter(motivation == "motintr") %>% pull(mean_female)
+```
+
+Los resultados del t-test indican que hay diferencias estadísticamente significativas entre las medias de hombres y mujeres en las tres motivaciones contempladas. 
+
+En concreto, las medias de las mujeres en motivación extrínseca (`r round(motextr_mean_female, 2)`) y motivación intrínseca (`r round(motintr_mean_female, 2)`) son más altas que las de los hombres (`r round(motextr_mean_male, 2)` y `r round(motintr_mean_male, 2)`), y la de los hombres lo es en motivación prosocial (`r round(motprosoc_mean_male, 2)` frente a `r round(motprosoc_mean_female, 2)`).
+
+
+
+## 2. ¿Cómo varían las motivaciones en función de la edad?
+```{r echo=FALSE}
+# Crear una base de datos larga para ggplot para motivaciones según `age_category`
+df_long_age_motivation <- df_filtered %>%
+  select(age_category, motprosoc, motextr, motintr) %>%
+  pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value")
+
+# Calcular medias por categoría de edad y motivación
+df_long_age_motivation_summary <- df_long_age_motivation %>%
+  group_by(age_category, motivation) %>%
+  summarise(mean_value = mean(value, na.rm = TRUE), .groups = 'drop')  # Añadir .groups = 'drop' para suprimir el mensaje
+
+# Crear el gráfico con tres barras de motivaciones para cada segmento de edad
+ggplot(df_long_age_motivation_summary, aes(x = motivation, y = mean_value, fill = age_category)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Media de Motivaciones por Categoría de Edad",
+       x = "Motivación",
+       y = "Media de Motivación",
+       fill = "Categoría de Edad") +
+  scale_fill_brewer(palette = "Spectral") +  # Usar una paleta de colores secuencial
+  theme_minimal()
+
+```
+
+
+## Resultados de ANOVAs por categorías de edad para cada motivación
+
+```{r, echo=FALSE}
+# Realizar ANOVAs para motivaciones según `age_category`
+motivation_vars <- c("motprosoc", "motextr", "motintr")
+
+# Realizar ANOVAs para cada motivación según `age_category`
+anova_results_motivation_age <- lapply(motivation_vars, function(var) {
+  aov_result <- aov(df_filtered[[var]] ~ df_filtered$age_category)
+  summary(aov_result)
+})
+
+# Extraer resultados de ANOVAs
+motprosoc_anova_age <- anova_results_motivation_age[[1]]
+motextr_anova_age <- anova_results_motivation_age[[2]]
+motintr_anova_age <- anova_results_motivation_age[[3]]
+
+motprosoc_f_value_age <- motprosoc_anova_age[[1]]["df_filtered$age_category", "F value"]
+motprosoc_p_value_age <- motprosoc_anova_age[[1]]["df_filtered$age_category", "Pr(>F)"]
+motextr_f_value_age <- motextr_anova_age[[1]]["df_filtered$age_category", "F value"]
+motextr_p_value_age <- motextr_anova_age[[1]]["df_filtered$age_category", "Pr(>F)"]
+motintr_f_value_age <- motintr_anova_age[[1]]["df_filtered$age_category", "F value"]
+motintr_p_value_age <- motintr_anova_age[[1]]["df_filtered$age_category", "Pr(>F)"]
+
+```
+
+Los resultados de los ANOVAs indican que las diferencias entre las medias de la motivación prosocial según las categorías de edad son significativas (F(7, 25819) = `r round(motprosoc_f_value_age, 3)`, p = `r round(motprosoc_p_value_age, 4)`). 
+
+Indican que las diferencias entre las medias de la motivación extrínseca según las categorías de edad son significativas (F(7, 25819) = `r round(motextr_f_value_age, 1)`, p < `r formatC(motextr_p_value_age, format = "e", digits = 2)`). 
+
+Indican también que las diferencias entre las medias de la motivación intrínseca según las categorías de edad son asimismo significativas (F(7, 25819) = `r round(motintr_f_value_age, 1)`, p < `r formatC(motintr_p_value_age, format = "e", digits = 2)`).
+
+
+
+## 3. ¿Cómo varían las motivaciones en función del nivel educativo?
+```{r, echo=FALSE}
+# Filtrar la base de datos para excluir los valores 0 y 55 en eisced y agrupar categorías
+df_filtered_eisced <- df_filtered %>%
+  mutate(eisced_grouped = case_when(
+    eisced %in% 1:4 ~ "ISCED 1-4",
+    eisced == 5 ~ "ISCED 5",
+    eisced == 6 ~ "ISCED 6",
+    eisced == 7 ~ "ISCED 7"
+  )) %>%
+  mutate(eisced_grouped = factor(eisced_grouped, levels = c("ISCED 1-4", "ISCED 5", "ISCED 6", "ISCED 7")))
+
+# Crear una base de datos larga para ggplot para motivaciones según `eisced_grouped`
+df_long_eisced_motivation <- df_filtered_eisced %>%
+  select(eisced_grouped, motprosoc, motextr, motintr) %>%
+  pivot_longer(cols = c("motprosoc", "motextr", "motintr"), names_to = "motivation", values_to = "value")
+
+# Calcular medias por categoría de nivel educativo y motivación
+df_long_eisced_motivation_summary <- df_long_eisced_motivation %>%
+  group_by(eisced_grouped, motivation) %>%
+  summarise(mean_value = mean(value, na.rm = TRUE), .groups = 'drop')
+
+# Definir una paleta de colores secuenciales manualmente con mayor contraste
+color_palette <- c("ISCED 1-4" = "#bdd7e7", "ISCED 5" = "#6baed6", "ISCED 6" = "#3182bd", "ISCED 7" = "#08519c")
+
+# Crear el gráfico con tres barras de motivaciones para cada nivel educativo
+ggplot(df_long_eisced_motivation_summary, aes(x = motivation, y = mean_value, fill = eisced_grouped)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Media de Motivaciones por Nivel Educativo",
+       x = "Motivación",
+       y = "Media de Motivación",
+       fill = "Nivel Educativo") +
+  scale_fill_manual(values = color_palette) +  # Usar una paleta de colores secuencial definida manualmente
+  theme_minimal()
+
+```
+
+## Resultados de ANOVAs por nivel de educación para cada motivación
+
+```{r, echo=FALSE}
+# Realizar ANOVAs para cada motivación según `eisced_grouped`
+motivation_vars <- c("motprosoc", "motextr", "motintr")
+
+# Realizar ANOVAs para cada motivación según `eisced_grouped`
+anova_results_motivation <- lapply(motivation_vars, function(var) {
+  anova_result <- aov(as.formula(paste(var, "~ eisced_grouped")), data = df_filtered)
+  summary(anova_result)
+})
+
+# Extraer resultados de ANOVAs
+motprosoc_anova <- anova_results_motivation[[1]]
+motextr_anova <- anova_results_motivation[[2]]
+motintr_anova <- anova_results_motivation[[3]]
+
+motprosoc_f_value <- motprosoc_anova[[1]]["eisced_grouped", "F value"]
+motprosoc_p_value <- motprosoc_anova[[1]]["eisced_grouped", "Pr(>F)"]
+motextr_f_value <- motextr_anova[[1]]["eisced_grouped", "F value"]
+motextr_p_value <- motextr_anova[[1]]["eisced_grouped", "Pr(>F)"]
+motintr_f_value <- motintr_anova[[1]]["eisced_grouped", "F value"]
+motintr_p_value <- motintr_anova[[1]]["eisced_grouped", "Pr(>F)"]
+
+```
+
+Los resultados de los ANOVAs indican que hay una diferencia significativa en la motivación prosocial entre los diferentes niveles educativos (F(3, 25823) = `r round(motprosoc_f_value, 2)`, p < `r formatC(motprosoc_p_value, format = "e", digits = 2)`). 
+
+Indican que hay diferencias significativas entre los niveles educativos en motivación extrínseca (F(3, 25823) = `r round(motextr_f_value, 2)`, p < `r formatC(motextr_p_value, format = "e", digits = 2)`) y, asimismo, que hay una diferencia significativa entre los niveles educativos en motivación intrínseca (F(3, 25823) = `r round(motintr_f_value, 2)`, p < `r formatC(motintr_p_value, format = "e", digits = 2)`).
+
+
+
+## 4. ¿Cómo varían las motivaciones en función del país?
+
+```{r, echo=FALSE}
+# Cargar las librerías necesarias
+library(dplyr)
+library(kableExtra)
+
+# Ajustar los nombres de los países
+df_filtered <- df_filtered %>%
+  mutate(
+    cntry = recode(cntry, 
+                   GB = "United Kingdom", FR = "France", PT = "Portugal", IT = "Italy", 
+                   ES = "Spain", DE = "Germany", NL = "Netherlands", BE = "Belgium", 
+                   IE = "Ireland", AT = "Austria", CH = "Switzerland", DK = "Denmark", 
+                   FI = "Finland", SE = "Sweden", NO = "Norway")
+  )
+
+# Calcular medias por país para cada tipo de motivación
+summary_country <- df_filtered %>%
+  group_by(cntry) %>%
+  summarise(mean_Prosocial = round(mean(motprosoc, na.rm = TRUE), 1),
+            mean_Extrínseca = round(mean(motextr, na.rm = TRUE), 1),
+            mean_Intrínseca = round(mean(motintr, na.rm = TRUE), 1))
+
+# Crear una tabla bonita con kableExtra
+summary_country %>%
+  kable("html", caption = "Media de las motivaciones por país") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), 
+                full_width = FALSE, 
+                position = "center", 
+                font_size = 12) %>%
+  column_spec(1, bold = TRUE, border_right = TRUE) %>%
+  column_spec(2:4, background = "lightblue", color = "black")
+
+```
+
+
